@@ -10,7 +10,8 @@ recipes = {
             "carbs": 15,
             "fat": 15
         },
-        "instructions": "1. Grill the chicken until cooked through.\n2. Chop the vegetables.\n3. Toss everything in a bowl and drizzle with olive oil and lemon juice."
+        "instructions": "1. Grill the chicken until cooked through.\n2. Chop the vegetables.\n3. Toss everything in a bowl and drizzle with olive oil and lemon juice.",
+        "video_link": "https://www.youtube.com/watch?v=example1"
     },
     "Protein Smoothie": {
         "ingredients": ["Banana", "Protein Powder", "Almond Milk", "Spinach", "Peanut Butter"],
@@ -20,7 +21,8 @@ recipes = {
             "carbs": 40,
             "fat": 10
         },
-        "instructions": "1. Combine all ingredients in a blender.\n2. Blend until smooth."
+        "instructions": "1. Combine all ingredients in a blender.\n2. Blend until smooth.",
+        "video_link": "https://www.youtube.com/watch?v=example2"
     },
     "Quinoa and Black Beans": {
         "ingredients": ["Quinoa", "Black Beans", "Corn", "Red Pepper", "Lime", "Cilantro"],
@@ -30,7 +32,8 @@ recipes = {
             "carbs": 70,
             "fat": 10
         },
-        "instructions": "1. Cook quinoa according to package instructions.\n2. Mix in black beans, corn, and diced red pepper.\n3. Squeeze lime juice and add cilantro."
+        "instructions": "1. Cook quinoa according to package instructions.\n2. Mix in black beans, corn, and diced red pepper.\n3. Squeeze lime juice and add cilantro.",
+        "video_link": "https://www.youtube.com/watch?v=example3"
     }
 }
 
@@ -39,6 +42,9 @@ grocery_store_link = "https://www.examplegrocerystore.com"
 
 # Cloud kitchen link
 cloud_kitchen_link = "https://www.examplecloudkitchen.com"
+
+# Cooking classes link
+cooking_classes_link = "https://www.examplecookingclasses.com"
 
 # Streamlit app
 st.title("Nutritional Recipes for Gym Enthusiasts")
@@ -63,9 +69,17 @@ st.write(f"- Fat: {selected_recipe['nutrition']['fat']}g")
 st.write("### Instructions:")
 st.write(selected_recipe["instructions"])
 
-# Links to grocery store and cloud kitchen
+# Display video tutorial link
+st.write("### Video Tutorial:")
+st.write(f"[Watch how to make {recipe_choice}]({selected_recipe['video_link']})")
+
+# Links to grocery store, cloud kitchen, and cooking classes
 st.write("### Grocery Store")
 st.write(f"[Shop here]({grocery_store_link}) for ingredients.")
 
 st.write("### Cloud Kitchen")
 st.write(f"[Order from our cloud kitchen]({cloud_kitchen_link}) for meal prep.")
+
+st.write("### Cooking Classes")
+st.write(f"[Join cooking classes]({cooking_classes_link}) to learn more cooking skills.")
+
