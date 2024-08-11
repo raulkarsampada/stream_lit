@@ -1,9 +1,7 @@
 import streamlit as st
 
-# Set page title and icon
 st.set_page_config(page_title="Foodie Hub", page_icon="🍲")
 
-# Function to display home page
 def home():
     st.title("Welcome to Foodie Hub!")
     st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_column_width=True)
@@ -12,7 +10,6 @@ def home():
     Use the navigation on the left to explore more!
     """)
 
-# Function to display recipes page
 def recipes():
     st.title("Recipe of the Day")
     st.header("Spaghetti Carbonara")
@@ -35,7 +32,6 @@ def recipes():
     """)
     st.markdown("[Find More Recipes](https://www.allrecipes.com/)")
 
-# Function to display grocery store and cloud kitchen URLs page
 def kitchen_resources():
     st.title("Grocery Stores & Cloud Kitchens")
     st.header("Grocery Stores")
@@ -52,7 +48,6 @@ def kitchen_resources():
     - [Kitchen United](https://www.kitchenunited.com/)
     """)
 
-# Function to display platform for part-time workers page
 def part_time_workers():
     st.title("Part-Time Work Opportunities")
     st.markdown("""
@@ -63,7 +58,6 @@ def part_time_workers():
     - [Hcareers](https://www.hcareers.com/)
     """)
 
-# Navigation menu
 menu = ["Home", "Recipes", "Grocery Stores & Cloud Kitchens", "Part-Time Work Opportunities"]
 choice = st.sidebar.selectbox("Navigation", menu)
 
@@ -76,6 +70,5 @@ elif choice == "Grocery Stores & Cloud Kitchens":
 elif choice == "Part-Time Work Opportunities":
     part_time_workers()
 
-# Footer
 st.sidebar.markdown("---")
 st.sidebar.markdown("© 2024 Foodie Hub")
