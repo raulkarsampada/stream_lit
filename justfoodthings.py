@@ -1,78 +1,81 @@
 import streamlit as st
 
-# Function to display the Home page
+# Set page title and icon
+st.set_page_config(page_title="Foodie Hub", page_icon="🍲")
+
+# Function to display home page
 def home():
-    st.title("Welcome to Foodies' Hub")
-    st.write("Your one-stop solution for recipes, groceries, cloud kitchens, and part-time work opportunities.")
+    st.title("Welcome to Foodie Hub!")
+    st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_column_width=True)
+    st.markdown("""
+    **Foodie Hub** is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
+    Use the navigation on the left to explore more!
+    """)
 
-# Function to display the Recipes page
+# Function to display recipes page
 def recipes():
-    st.title("Food Recipes")
-    st.write("Here are some delicious recipes for you to try!")
+    st.title("Recipe of the Day")
+    st.header("Spaghetti Carbonara")
+    st.image("https://images.unsplash.com/photo-1525351484163-7529414344d8", use_column_width=True)
+    st.markdown("""
+    **Ingredients:**
+    - 200g Spaghetti
+    - 100g Pancetta
+    - 2 Large Eggs
+    - 50g Pecorino Cheese
+    - Freshly Ground Black Pepper
+    - Salt
+
+    **Instructions:**
+    1. Cook the spaghetti in salted boiling water.
+    2. Fry the pancetta in a hot pan until crispy.
+    3. Beat the eggs with cheese and pepper.
+    4. Drain the pasta and mix with the pancetta and egg mixture.
+    5. Serve immediately with extra cheese and pepper on top.
+    """)
+    st.markdown("[Find More Recipes](https://www.allrecipes.com/)")
+
+# Function to display grocery store and cloud kitchen URLs page
+def kitchen_resources():
+    st.title("Grocery Stores & Cloud Kitchens")
+    st.header("Grocery Stores")
+    st.markdown("""
+    - [Walmart](https://www.walmart.com/)
+    - [Kroger](https://www.kroger.com/)
+    - [Whole Foods](https://www.wholefoodsmarket.com/)
+    """)
     
-    recipe_list = {
-        "Spaghetti Carbonara": "https://www.allrecipes.com/recipe/11973/spaghetti-carbonara-ii/",
-        "Chicken Curry": "https://www.bbcgoodfood.com/recipes/chicken-curry",
-        "Vegetarian Pizza": "https://www.simplyrecipes.com/recipes/vegetarian_pizza/",
-    }
+    st.header("Cloud Kitchens")
+    st.markdown("""
+    - [CloudKitchens](https://www.cloudkitchens.com/)
+    - [Reef Technology](https://reeftechnology.com/)
+    - [Kitchen United](https://www.kitchenunited.com/)
+    """)
 
-    for recipe, url in recipe_list.items():
-        st.markdown(f"[{recipe}]({url})")
+# Function to display platform for part-time workers page
+def part_time_workers():
+    st.title("Part-Time Work Opportunities")
+    st.markdown("""
+    **Love to Cook or into Hotel Management?**
+    Apply now to kickstart your career!
+    - [Indeed](https://www.indeed.com/q-Part-Time-Chef-jobs.html)
+    - [LinkedIn](https://www.linkedin.com/jobs/part-time-chef-jobs/)
+    - [Hcareers](https://www.hcareers.com/)
+    """)
 
-# Function to display the Grocery Stores page
-def grocery_stores():
-    st.title("Grocery Stores")
-    st.write("Find the best grocery stores near you.")
-    
-    grocery_list = {
-        "Amazon Fresh": "https://www.amazon.com/alm/storefront?almBrandId=QW1hem9uIEZyZXNo",
-        "Walmart Grocery": "https://grocery.walmart.com/",
-        "Instacart": "https://www.instacart.com/",
-    }
+# Navigation menu
+menu = ["Home", "Recipes", "Grocery Stores & Cloud Kitchens", "Part-Time Work Opportunities"]
+choice = st.sidebar.selectbox("Navigation", menu)
 
-    for store, url in grocery_list.items():
-        st.markdown(f"[{store}]({url})")
+if choice == "Home":
+    home()
+elif choice == "Recipes":
+    recipes()
+elif choice == "Grocery Stores & Cloud Kitchens":
+    kitchen_resources()
+elif choice == "Part-Time Work Opportunities":
+    part_time_workers()
 
-# Function to display the Cloud Kitchens page
-def cloud_kitchens():
-    st.title("Cloud Kitchens")
-    st.write("Explore cloud kitchens for quick and delicious meals.")
-    
-    kitchen_list = {
-        "Reef Kitchens": "https://reeftechnology.com/kitchens",
-        "Ghost Kitchen Brands": "https://www.ghostkitchenbrands.com/",
-        "Kitopi": "https://www.kitopi.com/",
-    }
-
-    for kitchen, url in kitchen_list.items():
-        st.markdown(f"[{kitchen}]({url})")
-
-# Function to display the Job Opportunities page
-def job_opportunities():
-    st.title("Part-time Work Opportunities")
-    st.write("Apply for part-time work opportunities in cooking and hotel management.")
-    
-    job_list = {
-        "Indeed": "https://www.indeed.com/q-Part-Time-Cooking-jobs.html",
-        "Glassdoor": "https://www.glassdoor.com/Job/part-time-hotel-management-jobs-SRCH_KO0,28.htm",
-        "LinkedIn": "https://www.linkedin.com/jobs/part-time-hotel-management-jobs/",
-    }
-
-    for job, url in job_list.items():
-        st.markdown(f"[{job}]({url})")
-
-# Navigation
-st.sidebar.title("Navigation")
-pages = {
-    "Home": home,
-    "Recipes": recipes,
-    "Grocery Stores": grocery_stores,
-    "Cloud Kitchens": cloud_kitchens,
-    "Job Opportunities": job_opportunities
-}
-
-selection = st.sidebar.radio("Go to", list(pages.keys()))
-
-# Display the selected page
-pages[selection]()
-
+# Footer
+st.sidebar.markdown("---")
+st.sidebar.markdown("© 2024 Foodie Hub")
