@@ -1,60 +1,61 @@
 import streamlit as st
 import pandas as pd
+import requests
 
-# Sample data for demonstration
-recipes_data = {
-    'Recipe': ['Protein Smoothie', 'Quinoa Salad', 'Chicken Stir-Fry'],
-    'Ingredients': [
-        'Protein powder, Banana, Almond milk, Spinach',
-        'Quinoa, Chickpeas, Bell peppers, Olive oil, Lemon juice',
-        'Chicken breast, Broccoli, Soy sauce, Garlic, Ginger'
-    ],
-    'Instructions': [
-        'Blend all ingredients until smooth.',
-        'Mix all ingredients in a bowl and dress with olive oil and lemon juice.',
-        'Stir-fry chicken with garlic and ginger, add broccoli and soy sauce.'
-    ],
-    'Calories': [250, 400, 350]
+# Sample data for grocery stores and part-time jobs
+grocery_stores = {
+    "Store Name": ["Healthy Foods", "Grocery Mart", "Fitness Market"],
+    "Location": ["Downtown", "Uptown", "Suburb"],
+    "Contact": ["123-456-7890", "234-567-8901", "345-678-9012"]
 }
 
-grocery_data = {
-    'Item': ['Protein powder', 'Banana', 'Quinoa', 'Chickpeas', 'Bell peppers', 'Chicken breast', 'Broccoli'],
-    'Quantity': ['1 lb', '5 pieces', '500 g', '400 g', '3 pieces', '1 kg', '1 bunch'],
-    'Price': [25.0, 1.0, 7.0, 3.0, 2.5, 10.0, 3.5]
+job_listings = {
+    "Job Title": ["Cook", "Kitchen Assistant", "Dishwasher"],
+    "Location": ["Downtown Cafe", "Uptown Bistro", "Suburb Restaurant"],
+    "Contact": ["admin@downtowncafe.com", "hr@uptownbistro.com", "info@suburbrestaurant.com"]
 }
 
-# Convert to DataFrame
-recipes_df = pd.DataFrame(recipes_data)
-grocery_df = pd.DataFrame(grocery_data)
+# Sample recipes database
+recipes = {
+    "Recipe Name": ["Protein Pancakes", "Chicken Salad", "Quinoa Bowl"],
+    "Ingredients": [
+        "2 Eggs, 1/2 cup Oats, 1/2 Banana, Protein Powder",
+        "200g Chicken Breast, Lettuce, Cherry Tomatoes, Olive Oil",
+        "1 cup Quinoa, 1 cup Broccoli, 1/2 Avocado, Lemon Juice"
+    ],
+    "Calories": [250, 300, 400],
+    "Description": [
+        "High-protein pancakes, great for breakfast.",
+        "A healthy salad packed with protein.",
+        "A nutritious bowl perfect for lunch."
+    ]
+}
 
-# Streamlit app
-st.title('Healthy Living Platform')
+# Streamlit App
+st.title("Gym Recipe & Food Platform")
 
-# Sidebar for navigation
-st.sidebar.title('Navigation')
-option = st.sidebar.selectbox('Select a section:', ['Home', 'Recipes', 'Grocery Store', 'Cloud Kitchen', 'Part-Time Opportunities'])
+# Recipe Search
+st.header("Find Recipes")
+food_item = st.text_input("Enter a food item:")
+if food_item:
+    filtered_recipes = pd.DataFrame(recipes).str.contains(food_item, case=False, na=False).any(axis=1)
+    result = pd.DataFrame(recipes)[filtered_recipes]
+    if not result.empty:
+        st.write(result)
+    else:
+        st.write("No recipes found for that food item.")
 
-if option == 'Home':
-    st.write('Welcome to the Healthy Living Platform. Explore recipes, grocery items, and opportunities for part-time work in the food industry.')
+# Grocery Store Section
+st.header("Grocery Stores")
+store_df = pd.DataFrame(grocery_stores)
+st.write(store_df)
 
-elif option == 'Recipes':
-    st.write('### Recipes for Gym Enthusiasts')
-    st.dataframe(recipes_df)
+# Job Listings Section
+st.header("Part-time Cooking Jobs")
+job_df = pd.DataFrame(job_listings)
+st.write(job_df)
 
-elif option == 'Grocery Store':
-    st.write('### Grocery Store')
-    st.dataframe(grocery_df)
-
-elif option == 'Cloud Kitchen':
-    st.write('### Cloud Kitchen Services')
-    st.write('Explore cloud kitchen services and partnerships. For more details, contact us directly.')
-
-elif option == 'Part-Time Opportunities':
-    st.write('### Part-Time Opportunities')
-    st.write('If you love cooking or are interested in hotel management, check out these opportunities:')
-    st.write('- Cook at local restaurants')
-    st.write('- Work as a kitchen assistant')
-    st.write('- Explore hotel management internships')
-    st.write('Visit our careers page for more details.')
-
-# Run the app with `streamlit run app.py`
+# Run the Streamlit app
+if __name__ == "__main__":
+    st.run()
+`
