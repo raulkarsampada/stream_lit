@@ -9,39 +9,39 @@ grocery_stores = {
 }
 
 cloud_kitchens = {
-    "Kitchen Name": ["Chef's Kitchen", "Home Cooked Meals", "Fitness Food Hub"],
+    "Kitchen Name": ["Chef's Kitchen", "Home Cooked Meals", "Healthy Eats"],
     "Location": ["Downtown", "Uptown", "Suburb"],
-    "Contact": ["chef@kitchen.com", "homecook@meals.com", "info@fitnessfoodhub.com"]
+    "Contact": ["chef@kitchen.com", "homecook@meals.com", "info@healthyeats.com"]
 }
 
 job_listings = {
-    "Job Title": ["Cook", "Kitchen Assistant", "Dishwasher"],
-    "Location": ["Downtown Cafe", "Uptown Bistro", "Suburb Restaurant"],
-    "Contact": ["admin@downtowncafe.com", "hr@uptownbistro.com", "info@suburbrestaurant.com"]
+    "Job Title": ["Cook", "Kitchen Assistant", "Dishwasher", "Server"],
+    "Location": ["Downtown Cafe", "Uptown Bistro", "Suburb Restaurant", "Hotel XYZ"],
+    "Contact": ["admin@downtowncafe.com", "hr@uptownbistro.com", "info@suburbrestaurant.com", "hr@hotelxyz.com"]
 }
 
 recipes = {
-    "Recipe Name": ["Spaghetti Bolognese", "Chicken Curry", "Quinoa Salad", "Protein Smoothie"],
+    "Recipe Name": ["Protein Pancakes", "Grilled Chicken Salad", "Quinoa Bowl", "Beef Stir Fry"],
     "Ingredients": [
-        "200g Spaghetti, 100g Ground Beef, Tomato Sauce, Onion, Garlic",
-        "200g Chicken Breast, Curry Powder, Coconut Milk, Vegetables",
-        "1 cup Quinoa, 1/2 cup Cherry Tomatoes, Cucumber, Lemon Dressing",
-        "1 Banana, 1 scoop Protein Powder, 1 cup Almond Milk, Spinach"
+        "2 Eggs, 1/2 cup Oats, 1/2 Banana, 1 scoop Protein Powder",
+        "200g Grilled Chicken, Lettuce, Cherry Tomatoes, Avocado",
+        "1 cup Quinoa, 1 cup Mixed Vegetables, Olive Oil, Lemon Juice",
+        "200g Beef, Broccoli, Bell Peppers, Soy Sauce, Garlic"
     ],
-    "Calories": [400, 600, 350, 250],
+    "Calories": [300, 400, 350, 500],
     "Description": [
-        "Classic Italian pasta dish with rich meat sauce.",
-        "Spicy and flavorful chicken curry with vegetables.",
-        "Healthy salad packed with protein and nutrients.",
-        "Nutritious smoothie perfect for post-workout."
+        "High-protein pancakes perfect for breakfast.",
+        "A healthy salad packed with protein and nutrients.",
+        "A nutritious bowl rich in protein and fiber.",
+        "Flavorful beef stir fry with vegetables."
     ]
 }
 
 # Streamlit App
-st.title("Food Recipe & Community Platform")
+st.title("Gym Recipe & Community Platform")
 
 # Recipe Search
-st.header("Find Recipes")
+st.header("Find Recipes for Gym Enthusiasts")
 food_item = st.text_input("Enter a food item:")
 if food_item:
     # Filter recipes based on user input
@@ -50,7 +50,8 @@ if food_item:
     result = filtered_recipes[mask]
     
     if not result.empty:
-        st.write(result)
+        st.write("### Matching Recipes:")
+        st.dataframe(result)
     else:
         st.write("No recipes found for that food item.")
 
@@ -61,15 +62,4 @@ st.write(store_df)
 
 # Cloud Kitchen Section
 st.header("Cloud Kitchens")
-kitchen_df = pd.DataFrame(cloud_kitchens)
-st.write(kitchen_df)
-
-# Job Listings Section
-st.header("Part-time Cooking Jobs")
-job_df = pd.DataFrame(job_listings)
-st.write(job_df)
-
-# Run the Streamlit app
-if __name__ == "__main__":
-    st.run()
-
+kitchen_df = pd.
