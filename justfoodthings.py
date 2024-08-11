@@ -1,22 +1,22 @@
 import streamlit as st
 
-# Sample data for recipes, grocery stores, and cloud kitchens
+# Sample data for recipes, grocery stores, and cloud kitchens for gym people
 recipes = {
-    "Spaghetti Bolognese": "https://example.com/spaghetti-bolognese",
-    "Chicken Curry": "https://example.com/chicken-curry",
-    "Vegetarian Pizza": "https://example.com/vegetarian-pizza",
+    "Grilled Chicken Salad": "https://example.com/grilled-chicken-salad",
+    "Protein Pancakes": "https://example.com/protein-pancakes",
+    "Quinoa and Black Bean Bowl": "https://example.com/quinoa-black-bean-bowl",
 }
 
 grocery_stores = {
-    "Fresh Market": "https://example.com/fresh-market",
-    "Grocery Hub": "https://example.com/grocery-hub",
-    "Daily Needs": "https://example.com/daily-needs",
+    "Healthy Grocers": "https://example.com/healthy-grocers",
+    "Organic Food Market": "https://example.com/organic-food-market",
+    "Fitness Foods": "https://example.com/fitness-foods",
 }
 
 cloud_kitchens = {
-    "Kitchen A": "https://example.com/kitchen-a",
-    "Kitchen B": "https://example.com/kitchen-b",
-    "Kitchen C": "https://example.com/kitchen-c",
+    "FitKitchen": "https://example.com/fitkitchen",
+    "GymEats": "https://example.com/gymeats",
+    "Protein House": "https://example.com/protein-house",
 }
 
 part_time_jobs = {
@@ -24,26 +24,26 @@ part_time_jobs = {
 }
 
 # Streamlit app
-st.title("Food Lovers' Hub")
+st.title("Health and Fitness Food Hub")
 
-st.header("1. Discover Recipes")
-st.write("Here are some popular recipes you can try:")
+st.header("1. Explore Healthy Recipes")
+st.write("Discover these nutritious recipes perfect for your fitness goals:")
 for recipe, url in recipes.items():
     st.write(f"[{recipe}]({url})")
 
-st.header("2. Find Grocery Stores Near You")
-st.write("Check out these grocery stores for all your cooking needs:")
+st.header("2. Shop at Nearby Grocery Stores")
+st.write("These grocery stores offer a wide range of healthy ingredients:")
 for store, url in grocery_stores.items():
     st.write(f"[{store}]({url})")
 
-st.header("3. Explore Cloud Kitchens")
-st.write("Order from these cloud kitchens to enjoy delicious meals delivered to your doorstep:")
+st.header("3. Order from Cloud Kitchens for Gym Enthusiasts")
+st.write("Order healthy meals tailored for your fitness needs from these cloud kitchens:")
 for kitchen, url in cloud_kitchens.items():
     st.write(f"[{kitchen}]({url})")
 
-st.header("4. Join Our Community of Cooks")
-st.write("Are you passionate about cooking? Apply for part-time work here:")
+st.header("4. Join Our Team of Culinary Enthusiasts")
+st.write("Love cooking or interested in hotel management? Apply for part-time opportunities here:")
 for job, url in part_time_jobs.items():
     st.write(f"[{job}]({url})")
 
-st.write("We are here to support your culinary journey!")
+st.write("Fuel your body and passion with our resources!")
