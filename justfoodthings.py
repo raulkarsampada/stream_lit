@@ -1,54 +1,88 @@
 import streamlit as st
 import pandas as pd
 
-recipes_data = {
-    'Recipe': ['Protein Smoothie', 'Quinoa Salad', 'Chicken Stir-Fry'],
-    'Ingredients': [
-        'Protein powder, Banana, Almond milk, Spinach',
-        'Quinoa, Chickpeas, Bell peppers, Olive oil, Lemon juice',
-        'Chicken breast, Broccoli, Soy sauce, Garlic, Ginger'
-    ],
-    'Instructions': [
-        'Blend all ingredients until smooth.',
-        'Mix all ingredients in a bowl and dress with olive oil and lemon juice.',
-        'Stir-fry chicken with garlic and ginger, add broccoli and soy sauce.'
-    ],
-    'Calories': [250, 400, 350]
+# Sample data for grocery stores, cloud kitchens, part-time jobs, and recipes
+grocery_stores = {
+    "Store Name": ["Healthy Foods", "Grocery Mart", "Fitness Market"],
+    "Location": ["Downtown", "Uptown", "Suburb"],
+    "Contact": ["123-456-7890", "234-567-8901", "345-678-9012"]
 }
 
-grocery_data = {
-    'Item': ['Protein powder', 'Banana', 'Quinoa', 'Chickpeas', 'Bell peppers', 'Chicken breast', 'Broccoli'],
-    'Quantity': ['1 lb', '5 pieces', '500 g', '400 g', '3 pieces', '1 kg', '1 bunch'],
-    'Price': [25.0, 1.0, 7.0, 3.0, 2.5, 10.0, 3.5]
+cloud_kitchens = {
+    "Kitchen Name": ["Chef's Kitchen", "Home Cooked Meals", "Healthy Eats"],
+    "Location": ["Downtown", "Uptown", "Suburb"],
+    "Contact": ["chef@kitchen.com", "homecook@meals.com", "info@healthyeats.com"]
 }
 
-recipes_df = pd.DataFrame(recipes_data)
-grocery_df = pd.DataFrame(grocery_data)
+job_listings = {
+    "Job Title": ["Cook", "Kitchen Assistant", "Dishwasher", "Server"],
+    "Location": ["Downtown Cafe", "Uptown Bistro", "Suburb Restaurant", "Hotel XYZ"],
+    "Contact": ["admin@downtowncafe.com", "hr@uptownbistro.com", "info@suburbrestaurant.com", "hr@hotelxyz.com"],
+    "Apply URL": [
+        "https://example.com/apply-cook",
+        "https://example.com/apply-kitchen-assistant",
+        "https://example.com/apply-dishwasher",
+        "https://example.com/apply-server"
+    ]
+}
 
-st.title('Healthy Living Platform')
+recipes = {
+    "Recipe Name": ["Protein Pancakes", "Grilled Chicken Salad", "Quinoa Bowl", "Beef Stir Fry"],
+    "Ingredients": [
+        "2 Eggs, 1/2 cup Oats, 1/2 Banana, 1 scoop Protein Powder",
+        "200g Grilled Chicken, Lettuce, Cherry Tomatoes, Avocado",
+        "1 cup Quinoa, 1 cup Mixed Vegetables, Olive Oil, Lemon Juice",
+        "200g Beef, Broccoli, Bell Peppers, Soy Sauce, Garlic"
+    ],
+    "Calories": [300, 400, 350, 500],
+    "Description": [
+        "High-protein pancakes perfect for breakfast.",
+        "A healthy salad packed with protein and nutrients.",
+        "A nutritious bowl rich in protein and fiber.",
+        "Flavorful beef stir fry with vegetables."
+    ]
+}
 
-st.sidebar.title('Navigation')
-option = st.sidebar.selectbox('Select a section:', ['Home', 'Recipes', 'Grocery Store', 'Cloud Kitchen', 'Part-Time Opportunities'])
+# Streamlit App
+st.title("Gym Recipe & Community Platform")
 
-if option == 'Home':
-    st.write('Welcome to the Healthy Living Platform. Explore recipes, grocery items, and opportunities for part-time work in the food industry.')
+# Recipe Search
+st.header("Find Recipes for Gym Enthusiasts")
+food_item = st.text_input("Enter a food item:")
+if food_item:
+    # Filter recipes based on user input
+    filtered_recipes = pd.DataFrame(recipes)
+    mask = filtered_recipes['Recipe Name'].str.contains(food_item, case=False)
+    result = filtered_recipes[mask]
+    
+    if not result.empty:
+        st.write("### Matching Recipes:")
+        st.dataframe(result)
+    else:
+        st.write("No recipes found for that food item.")
 
-elif option == 'Recipes':
-    st.write('### Recipes for Gym Enthusiasts')
-    st.dataframe(recipes_df)
+# Grocery Store Section
+st.header("Grocery Stores")
+store_df = pd.DataFrame(grocery_stores)
+st.write(store_df)
 
-elif option == 'Grocery Store':
-    st.write('### Grocery Store')
-    st.dataframe(grocery_df)
+# Cloud Kitchen Section
+st.header("Cloud Kitchens")
+kitchen_df = pd.DataFrame(cloud_kitchens)
+st.write(kitchen_df)
 
-elif option == 'Cloud Kitchen':
-    st.write('### Cloud Kitchen Services')
-    st.write('Explore cloud kitchen services and partnerships. For more details, contact us directly.')
+# Link to add a new Cloud Kitchen
+st.markdown("[Add Your Cloud Kitchen](https://example.com/add-kitchen)")
 
-elif option == 'Part-Time Opportunities':
-    st.write('### Part-Time Opportunities')
-    st.write('If you love cooking or are interested in hotel management, check out these opportunities:')
-    st.write('- Cook at local restaurants')
-    st.write('- Work as a kitchen assistant')
-    st.write('- Explore hotel management internships')
-    st.write('Visit our careers page for more details.')
+# Job Listings Section
+st.header("Part-time Cooking Jobs")
+job_df = pd.DataFrame(job_listings)
+st.write(job_df)
+
+# Add Apply Links
+for index, row in job_df.iterrows():
+    st.markdown(f"[Apply for {row['Job Title']} at {row['Location']}]({row['Apply URL']})")
+
+# Run the Streamlit app
+if __name__ == "__main__":
+    st.run()
