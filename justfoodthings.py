@@ -58,5 +58,4 @@ st.write(job_df)
 
 # Run the Streamlit app
 if __name__ == "__main__":
-    st.run()
 
