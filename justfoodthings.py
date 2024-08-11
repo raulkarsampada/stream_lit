@@ -1,68 +1,78 @@
 import streamlit as st
 
-# Function to display recipes
-def show_recipes():
-    st.header("Food Recipes")
-    recipes = {
-        "Spaghetti Carbonara": {
-            "Ingredients": ["Spaghetti", "Eggs", "Parmesan cheese", "Pancetta", "Black pepper"],
-            "Instructions": "Cook spaghetti. In a separate bowl, mix eggs and cheese. Fry pancetta until crispy. Combine everything and add black pepper."
-        },
-        "Chicken Curry": {
-            "Ingredients": ["Chicken", "Onions", "Tomatoes", "Garlic", "Spices", "Coconut milk"],
-            "Instructions": "Sauté onions and garlic. Add chicken and brown it. Add tomatoes and spices, cook until fragrant. Add coconut milk and simmer until chicken is cooked."
-        }
+# Function to display the Home page
+def home():
+    st.title("Welcome to Foodies' Hub")
+    st.write("Your one-stop solution for recipes, groceries, cloud kitchens, and part-time work opportunities.")
+
+# Function to display the Recipes page
+def recipes():
+    st.title("Food Recipes")
+    st.write("Here are some delicious recipes for you to try!")
+    
+    recipe_list = {
+        "Spaghetti Carbonara": "https://www.allrecipes.com/recipe/11973/spaghetti-carbonara-ii/",
+        "Chicken Curry": "https://www.bbcgoodfood.com/recipes/chicken-curry",
+        "Vegetarian Pizza": "https://www.simplyrecipes.com/recipes/vegetarian_pizza/",
     }
 
-    for recipe, details in recipes.items():
-        st.subheader(recipe)
-        st.write("**Ingredients:**")
-        st.write(", ".join(details["Ingredients"]))
-        st.write("**Instructions:**")
-        st.write(details["Instructions"])
+    for recipe, url in recipe_list.items():
+        st.markdown(f"[{recipe}]({url})")
 
-# Function to display grocery store URLs
-def show_grocery_stores():
-    st.header("Grocery Stores")
-    grocery_stores = {
-        "Local Grocery Store": "https://localgrocerystore.com",
-        "Organic Food Market": "https://organicfoodmarket.com"
+# Function to display the Grocery Stores page
+def grocery_stores():
+    st.title("Grocery Stores")
+    st.write("Find the best grocery stores near you.")
+    
+    grocery_list = {
+        "Amazon Fresh": "https://www.amazon.com/alm/storefront?almBrandId=QW1hem9uIEZyZXNo",
+        "Walmart Grocery": "https://grocery.walmart.com/",
+        "Instacart": "https://www.instacart.com/",
     }
 
-    for store, url in grocery_stores.items():
+    for store, url in grocery_list.items():
         st.markdown(f"[{store}]({url})")
 
-# Function to display cloud kitchen URLs
-def show_cloud_kitchens():
-    st.header("Cloud Kitchens")
-    cloud_kitchens = {
-        "Kitchen Hub": "https://kitchenhub.com",
-        "CloudEats": "https://cloudeats.com"
+# Function to display the Cloud Kitchens page
+def cloud_kitchens():
+    st.title("Cloud Kitchens")
+    st.write("Explore cloud kitchens for quick and delicious meals.")
+    
+    kitchen_list = {
+        "Reef Kitchens": "https://reeftechnology.com/kitchens",
+        "Ghost Kitchen Brands": "https://www.ghostkitchenbrands.com/",
+        "Kitopi": "https://www.kitopi.com/",
     }
 
-    for kitchen, url in cloud_kitchens.items():
+    for kitchen, url in kitchen_list.items():
         st.markdown(f"[{kitchen}]({url})")
 
-# Function to display part-time job platform URLs
-def show_part_time_jobs():
-    st.header("Part-Time Job Opportunities")
-    job_platforms = {
-        "CookUp": "https://cookup.com",
-        "Hotel Management Jobs": "https://hotelmanagementjobs.com"
+# Function to display the Job Opportunities page
+def job_opportunities():
+    st.title("Part-time Work Opportunities")
+    st.write("Apply for part-time work opportunities in cooking and hotel management.")
+    
+    job_list = {
+        "Indeed": "https://www.indeed.com/q-Part-Time-Cooking-jobs.html",
+        "Glassdoor": "https://www.glassdoor.com/Job/part-time-hotel-management-jobs-SRCH_KO0,28.htm",
+        "LinkedIn": "https://www.linkedin.com/jobs/part-time-hotel-management-jobs/",
     }
 
-    for platform, url in job_platforms.items():
-        st.markdown(f"[{platform}]({url})")
+    for job, url in job_list.items():
+        st.markdown(f"[{job}]({url})")
 
-# Streamlit navigation
+# Navigation
 st.sidebar.title("Navigation")
-options = st.sidebar.radio("Go to", ["Recipes", "Grocery Stores", "Cloud Kitchens", "Part-Time Jobs"])
+pages = {
+    "Home": home,
+    "Recipes": recipes,
+    "Grocery Stores": grocery_stores,
+    "Cloud Kitchens": cloud_kitchens,
+    "Job Opportunities": job_opportunities
+}
 
-if options == "Recipes":
-    show_recipes()
-elif options == "Grocery Stores":
-    show_grocery_stores()
-elif options == "Cloud Kitchens":
-    show_cloud_kitchens()
-elif options == "Part-Time Jobs":
-    show_part_time_jobs()
+selection = st.sidebar.radio("Go to", list(pages.keys()))
+
+# Display the selected page
+pages[selection]()
+
