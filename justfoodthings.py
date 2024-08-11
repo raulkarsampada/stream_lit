@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Sample data for grocery stores, cloud kitchens, part-time jobs, and recipes
 grocery_stores = {
     "Store Name": ["Healthy Foods", "Grocery Mart", "Fitness Market"],
     "Location": ["Downtown", "Uptown", "Suburb"],
@@ -43,10 +42,8 @@ recipes = {
     ]
 }
 
-# Streamlit App
 st.title("Gym Recipe & Community Platform")
 
-# Recipe Search
 st.header("Find Recipes for Gym Enthusiasts")
 food_item = st.text_input("Enter a food item:")
 if food_item:
@@ -61,24 +58,19 @@ if food_item:
     else:
         st.write("No recipes found for that food item.")
 
-# Grocery Store Section
 st.header("Grocery Stores")
 store_df = pd.DataFrame(grocery_stores)
 st.write(store_df)
 
-# Cloud Kitchen Section
 st.header("Cloud Kitchens")
 kitchen_df = pd.DataFrame(cloud_kitchens)
 st.write(kitchen_df)
 
-# Link to add a new Cloud Kitchen
 st.markdown("[Add Your Cloud Kitchen](https://example.com/add-kitchen)")
 
-# Job Listings Section
 st.header("Part-time Cooking Jobs")
 job_df = pd.DataFrame(job_listings)
 st.write(job_df)
 
-# Add Apply Links
 for index, row in job_df.iterrows():
     st.markdown(f"[Apply for {row['Job Title']} at {row['Location']}]({row['Apply URL']})")
