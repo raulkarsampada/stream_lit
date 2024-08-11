@@ -1,60 +1,68 @@
 import streamlit as st
 
-# Sample data for recipes, diet plans, grocery stores, and cloud kitchens
-recipes = {
-    "Spaghetti Bolognese": "https://example.com/spaghetti-bolognese",
-    "Chicken Curry": "https://example.com/chicken-curry",
-    "Vegetarian Pizza": "https://example.com/vegetarian-pizza",
-}
+# Function to display recipes
+def show_recipes():
+    st.header("Food Recipes")
+    recipes = {
+        "Spaghetti Carbonara": {
+            "Ingredients": ["Spaghetti", "Eggs", "Parmesan cheese", "Pancetta", "Black pepper"],
+            "Instructions": "Cook spaghetti. In a separate bowl, mix eggs and cheese. Fry pancetta until crispy. Combine everything and add black pepper."
+        },
+        "Chicken Curry": {
+            "Ingredients": ["Chicken", "Onions", "Tomatoes", "Garlic", "Spices", "Coconut milk"],
+            "Instructions": "Sauté onions and garlic. Add chicken and brown it. Add tomatoes and spices, cook until fragrant. Add coconut milk and simmer until chicken is cooked."
+        }
+    }
 
-diet_plans = {
-    "High Protein Diet": "https://example.com/high-protein-diet",
-    "Keto Diet": "https://example.com/keto-diet",
-    "Balanced Diet": "https://example.com/balanced-diet",
-}
+    for recipe, details in recipes.items():
+        st.subheader(recipe)
+        st.write("**Ingredients:**")
+        st.write(", ".join(details["Ingredients"]))
+        st.write("**Instructions:**")
+        st.write(details["Instructions"])
 
-grocery_stores = {
-    "Fresh Market": "https://example.com/fresh-market",
-    "Grocery Hub": "https://example.com/grocery-hub",
-    "Daily Needs": "https://example.com/daily-needs",
-}
+# Function to display grocery store URLs
+def show_grocery_stores():
+    st.header("Grocery Stores")
+    grocery_stores = {
+        "Local Grocery Store": "https://localgrocerystore.com",
+        "Organic Food Market": "https://organicfoodmarket.com"
+    }
 
-cloud_kitchens = {
-    "Kitchen A": "https://example.com/kitchen-a",
-    "Kitchen B": "https://example.com/kitchen-b",
-    "Kitchen C": "https://example.com/kitchen-c",
-}
+    for store, url in grocery_stores.items():
+        st.markdown(f"[{store}]({url})")
 
-part_time_jobs = {
-    "Apply Here": "https://example.com/apply-here",
-}
+# Function to display cloud kitchen URLs
+def show_cloud_kitchens():
+    st.header("Cloud Kitchens")
+    cloud_kitchens = {
+        "Kitchen Hub": "https://kitchenhub.com",
+        "CloudEats": "https://cloudeats.com"
+    }
 
-# Streamlit app
-st.title("Food and Fitness Hub")
+    for kitchen, url in cloud_kitchens.items():
+        st.markdown(f"[{kitchen}]({url})")
 
-st.header("1. Discover Recipes")
-st.write("Here are some popular recipes you can try:")
-for recipe, url in recipes.items():
-    st.write(f"[{recipe}]({url})")
+# Function to display part-time job platform URLs
+def show_part_time_jobs():
+    st.header("Part-Time Job Opportunities")
+    job_platforms = {
+        "CookUp": "https://cookup.com",
+        "Hotel Management Jobs": "https://hotelmanagementjobs.com"
+    }
 
-st.header("2. Gym Diet Plans")
-st.write("Check out these diet plans designed for gym-goers:")
-for diet, url in diet_plans.items():
-    st.write(f"[{diet}]({url})")
+    for platform, url in job_platforms.items():
+        st.markdown(f"[{platform}]({url})")
 
-st.header("3. Find Grocery Stores Near You")
-st.write("Check out these grocery stores for all your cooking and diet needs:")
-for store, url in grocery_stores.items():
-    st.write(f"[{store}]({url})")
+# Streamlit navigation
+st.sidebar.title("Navigation")
+options = st.sidebar.radio("Go to", ["Recipes", "Grocery Stores", "Cloud Kitchens", "Part-Time Jobs"])
 
-st.header("4. Explore Cloud Kitchens")
-st.write("Order from these cloud kitchens to enjoy delicious meals delivered to your doorstep:")
-for kitchen, url in cloud_kitchens.items():
-    st.write(f"[{kitchen}]({url})")
-
-st.header("5. Join Our Community of Cooks")
-st.write("Are you passionate about cooking? Apply for part-time work here:")
-for job, url in part_time_jobs.items():
-    st.write(f"[{job}]({url})")
-
-st.write("We are here to support your culinary and fitness journey!")
+if options == "Recipes":
+    show_recipes()
+elif options == "Grocery Stores":
+    show_grocery_stores()
+elif options == "Cloud Kitchens":
+    show_cloud_kitchens()
+elif options == "Part-Time Jobs":
+    show_part_time_jobs()
