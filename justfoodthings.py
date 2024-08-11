@@ -1,22 +1,28 @@
 import streamlit as st
 
-# Sample data for recipes, grocery stores, and cloud kitchens for gym people
+# Sample data for recipes, diet plans, grocery stores, and cloud kitchens
 recipes = {
-    "Grilled Chicken Salad": "https://example.com/grilled-chicken-salad",
-    "Protein Pancakes": "https://example.com/protein-pancakes",
-    "Quinoa and Black Bean Bowl": "https://example.com/quinoa-black-bean-bowl",
+    "Spaghetti Bolognese": "https://example.com/spaghetti-bolognese",
+    "Chicken Curry": "https://example.com/chicken-curry",
+    "Vegetarian Pizza": "https://example.com/vegetarian-pizza",
+}
+
+diet_plans = {
+    "High Protein Diet": "https://example.com/high-protein-diet",
+    "Keto Diet": "https://example.com/keto-diet",
+    "Balanced Diet": "https://example.com/balanced-diet",
 }
 
 grocery_stores = {
-    "Healthy Grocers": "https://example.com/healthy-grocers",
-    "Organic Food Market": "https://example.com/organic-food-market",
-    "Fitness Foods": "https://example.com/fitness-foods",
+    "Fresh Market": "https://example.com/fresh-market",
+    "Grocery Hub": "https://example.com/grocery-hub",
+    "Daily Needs": "https://example.com/daily-needs",
 }
 
 cloud_kitchens = {
-    "FitKitchen": "https://example.com/fitkitchen",
-    "GymEats": "https://example.com/gymeats",
-    "Protein House": "https://example.com/protein-house",
+    "Kitchen A": "https://example.com/kitchen-a",
+    "Kitchen B": "https://example.com/kitchen-b",
+    "Kitchen C": "https://example.com/kitchen-c",
 }
 
 part_time_jobs = {
@@ -24,26 +30,31 @@ part_time_jobs = {
 }
 
 # Streamlit app
-st.title("Health and Fitness Food Hub")
+st.title("Food and Fitness Hub")
 
-st.header("1. Explore Healthy Recipes")
-st.write("Discover these nutritious recipes perfect for your fitness goals:")
+st.header("1. Discover Recipes")
+st.write("Here are some popular recipes you can try:")
 for recipe, url in recipes.items():
     st.write(f"[{recipe}]({url})")
 
-st.header("2. Shop at Nearby Grocery Stores")
-st.write("These grocery stores offer a wide range of healthy ingredients:")
+st.header("2. Gym Diet Plans")
+st.write("Check out these diet plans designed for gym-goers:")
+for diet, url in diet_plans.items():
+    st.write(f"[{diet}]({url})")
+
+st.header("3. Find Grocery Stores Near You")
+st.write("Check out these grocery stores for all your cooking and diet needs:")
 for store, url in grocery_stores.items():
     st.write(f"[{store}]({url})")
 
-st.header("3. Order from Cloud Kitchens for Gym Enthusiasts")
-st.write("Order healthy meals tailored for your fitness needs from these cloud kitchens:")
+st.header("4. Explore Cloud Kitchens")
+st.write("Order from these cloud kitchens to enjoy delicious meals delivered to your doorstep:")
 for kitchen, url in cloud_kitchens.items():
     st.write(f"[{kitchen}]({url})")
 
-st.header("4. Join Our Team of Culinary Enthusiasts")
-st.write("Love cooking or interested in hotel management? Apply for part-time opportunities here:")
+st.header("5. Join Our Community of Cooks")
+st.write("Are you passionate about cooking? Apply for part-time work here:")
 for job, url in part_time_jobs.items():
     st.write(f"[{job}]({url})")
 
-st.write("Fuel your body and passion with our resources!")
+st.write("We are here to support your culinary and fitness journey!")
