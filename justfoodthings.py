@@ -82,7 +82,3 @@ st.write(job_df)
 # Add Apply Links
 for index, row in job_df.iterrows():
     st.markdown(f"[Apply for {row['Job Title']} at {row['Location']}]({row['Apply URL']})")
-
-# Run the Streamlit app
-if __name__ == "__main__":
-    st.run()
