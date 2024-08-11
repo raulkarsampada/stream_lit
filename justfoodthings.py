@@ -1,55 +1,61 @@
 import streamlit as st
 import pandas as pd
 
-# Load data
-recipes_df = pd.read_csv('recipes.csv')
-grocery_df = pd.read_csv('grocery_items.csv')
+# Sample data for demonstration
+recipes_data = {
+    'Recipe': ['Protein Smoothie', 'Quinoa Salad', 'Chicken Stir-Fry'],
+    'Ingredients': [
+        'Protein powder, Banana, Almond milk, Spinach',
+        'Quinoa, Chickpeas, Bell peppers, Olive oil, Lemon juice',
+        'Chicken breast, Broccoli, Soy sauce, Garlic, Ginger'
+    ],
+    'Instructions': [
+        'Blend all ingredients until smooth.',
+        'Mix all ingredients in a bowl and dress with olive oil and lemon juice.',
+        'Stir-fry chicken with garlic and ginger, add broccoli and soy sauce.'
+    ],
+    'Calories': [250, 400, 350]
+}
+
+grocery_data = {
+    'Item': ['Protein powder', 'Banana', 'Quinoa', 'Chickpeas', 'Bell peppers', 'Chicken breast', 'Broccoli'],
+    'Quantity': ['1 lb', '5 pieces', '500 g', '400 g', '3 pieces', '1 kg', '1 bunch'],
+    'Price': [25.0, 1.0, 7.0, 3.0, 2.5, 10.0, 3.5]
+}
+
+# Convert to DataFrame
+recipes_df = pd.DataFrame(recipes_data)
+grocery_df = pd.DataFrame(grocery_data)
 
 # Streamlit app
-st.title("Gym Recipe App")
+st.title('Healthy Living Platform')
 
-# Navigation sidebar
-st.sidebar.title("Navigation")
-options = st.sidebar.radio("Choose a section:", ("Home", "Recipes", "Grocery Store", "Cloud Kitchen", "Part-time Cooking Jobs"))
+# Sidebar for navigation
+st.sidebar.title('Navigation')
+option = st.sidebar.selectbox('Select a section:', ['Home', 'Recipes', 'Grocery Store', 'Cloud Kitchen', 'Part-Time Opportunities'])
 
-if options == "Home":
-    st.subheader("Welcome to the Gym Recipe App")
-    st.write("This app provides healthy recipes for gym enthusiasts, grocery items, cloud kitchen services, and opportunities for part-time cooking jobs.")
-    
-elif options == "Recipes":
-    st.subheader("Healthy Recipes")
+if option == 'Home':
+    st.write('Welcome to the Healthy Living Platform. Explore recipes, grocery items, and opportunities for part-time work in the food industry.')
+
+elif option == 'Recipes':
+    st.write('### Recipes for Gym Enthusiasts')
     st.dataframe(recipes_df)
 
-    recipe_name = st.selectbox("Select a recipe to view details", recipes_df['name'])
-    recipe_details = recipes_df[recipes_df['name'] == recipe_name]
-    
-    if not recipe_details.empty:
-        st.write("### Ingredients:")
-        st.write(recipe_details['ingredients'].values[0])
-        st.write("### Instructions:")
-        st.write(recipe_details['instructions'].values[0])
-        st.write("### Calories:")
-        st.write(recipe_details['calories'].values[0])
-    
-elif options == "Grocery Store":
-    st.subheader("Grocery Store")
+elif option == 'Grocery Store':
+    st.write('### Grocery Store')
     st.dataframe(grocery_df)
 
-    grocery_item = st.selectbox("Select a grocery item to view details", grocery_df['name'])
-    grocery_details = grocery_df[grocery_df['name'] == grocery_item]
-    
-    if not grocery_details.empty:
-        st.write("### Quantity:")
-        st.write(grocery_details['quantity'].values[0])
-        st.write("### Price:")
-        st.write(grocery_details['price'].values[0])
+elif option == 'Cloud Kitchen':
+    st.write('### Cloud Kitchen Services')
+    st.write('Explore cloud kitchen services and partnerships. For more details, contact us directly.')
 
-elif options == "Cloud Kitchen":
-    st.subheader("Cloud Kitchen Services")
-    st.write("Explore our cloud kitchen services. Place your order for healthy meals prepared by our chefs.")
-    st.write("For more information, contact us at cloudkitchen@example.com")
+elif option == 'Part-Time Opportunities':
+    st.write('### Part-Time Opportunities')
+    st.write('If you love cooking or are interested in hotel management, check out these opportunities:')
+    st.write('- Cook at local restaurants')
+    st.write('- Work as a kitchen assistant')
+    st.write('- Explore hotel management internships')
+    st.write('Visit our careers page for more details.')
 
-elif options == "Part-time Cooking Jobs":
-    st.subheader("Part-time Cooking Jobs")
-    st.write("We are looking for passionate part-time cooks and hotel management enthusiasts.")
-    st.write("If you're interested, please send your resume to jobs@example.com")
+# Run the app with `streamlit run app.py`
+
