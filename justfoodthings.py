@@ -1,85 +1,60 @@
 import streamlit as st
+import pandas as pd
 
-# Sample data for nutritional foods
-recipes = {
-    "Grilled Chicken Salad": {
-        "ingredients": ["Chicken Breast", "Mixed Greens", "Cherry Tomatoes", "Cucumber", "Olive Oil", "Lemon Juice"],
-        "nutrition": {
-            "calories": 350,
-            "protein": 40,
-            "carbs": 15,
-            "fat": 15
-        },
-        "instructions": "1. Grill the chicken until cooked through.\n2. Chop the vegetables.\n3. Toss everything in a bowl and drizzle with olive oil and lemon juice.",
-        "video_link": "https://www.youtube.com/watch?v=example1"
-    },
-    "Protein Smoothie": {
-        "ingredients": ["Banana", "Protein Powder", "Almond Milk", "Spinach", "Peanut Butter"],
-        "nutrition": {
-            "calories": 300,
-            "protein": 30,
-            "carbs": 40,
-            "fat": 10
-        },
-        "instructions": "1. Combine all ingredients in a blender.\n2. Blend until smooth.",
-        "video_link": "https://www.youtube.com/watch?v=example2"
-    },
-    "Quinoa and Black Beans": {
-        "ingredients": ["Quinoa", "Black Beans", "Corn", "Red Pepper", "Lime", "Cilantro"],
-        "nutrition": {
-            "calories": 450,
-            "protein": 15,
-            "carbs": 70,
-            "fat": 10
-        },
-        "instructions": "1. Cook quinoa according to package instructions.\n2. Mix in black beans, corn, and diced red pepper.\n3. Squeeze lime juice and add cilantro.",
-        "video_link": "https://www.youtube.com/watch?v=example3"
-    }
+# Sample data for demonstration
+recipes_data = {
+    'Recipe': ['Protein Smoothie', 'Quinoa Salad', 'Chicken Stir-Fry'],
+    'Ingredients': [
+        'Protein powder, Banana, Almond milk, Spinach',
+        'Quinoa, Chickpeas, Bell peppers, Olive oil, Lemon juice',
+        'Chicken breast, Broccoli, Soy sauce, Garlic, Ginger'
+    ],
+    'Instructions': [
+        'Blend all ingredients until smooth.',
+        'Mix all ingredients in a bowl and dress with olive oil and lemon juice.',
+        'Stir-fry chicken with garlic and ginger, add broccoli and soy sauce.'
+    ],
+    'Calories': [250, 400, 350]
 }
 
-# Grocery store link
-grocery_store_link = "https://www.examplegrocerystore.com"
+grocery_data = {
+    'Item': ['Protein powder', 'Banana', 'Quinoa', 'Chickpeas', 'Bell peppers', 'Chicken breast', 'Broccoli'],
+    'Quantity': ['1 lb', '5 pieces', '500 g', '400 g', '3 pieces', '1 kg', '1 bunch'],
+    'Price': [25.0, 1.0, 7.0, 3.0, 2.5, 10.0, 3.5]
+}
 
-# Cloud kitchen link
-cloud_kitchen_link = "https://www.examplecloudkitchen.com"
-
-# Cooking classes link
-cooking_classes_link = "https://www.examplecookingclasses.com"
+# Convert to DataFrame
+recipes_df = pd.DataFrame(recipes_data)
+grocery_df = pd.DataFrame(grocery_data)
 
 # Streamlit app
-st.title("Nutritional Recipes for Gym Enthusiasts")
+st.title('Healthy Living Platform')
 
-st.sidebar.header("Choose a Recipe")
-recipe_choice = st.sidebar.selectbox("Select a Recipe", list(recipes.keys()))
+# Sidebar for navigation
+st.sidebar.title('Navigation')
+option = st.sidebar.selectbox('Select a section:', ['Home', 'Recipes', 'Grocery Store', 'Cloud Kitchen', 'Part-Time Opportunities'])
 
-st.subheader(recipe_choice)
+if option == 'Home':
+    st.write('Welcome to the Healthy Living Platform. Explore recipes, grocery items, and opportunities for part-time work in the food industry.')
 
-# Display selected recipe details
-selected_recipe = recipes[recipe_choice]
-st.write("### Ingredients:")
-for ingredient in selected_recipe["ingredients"]:
-    st.write(f"- {ingredient}")
+elif option == 'Recipes':
+    st.write('### Recipes for Gym Enthusiasts')
+    st.dataframe(recipes_df)
 
-st.write("### Nutrition Facts:")
-st.write(f"- Calories: {selected_recipe['nutrition']['calories']}")
-st.write(f"- Protein: {selected_recipe['nutrition']['protein']}g")
-st.write(f"- Carbohydrates: {selected_recipe['nutrition']['carbs']}g")
-st.write(f"- Fat: {selected_recipe['nutrition']['fat']}g")
+elif option == 'Grocery Store':
+    st.write('### Grocery Store')
+    st.dataframe(grocery_df)
 
-st.write("### Instructions:")
-st.write(selected_recipe["instructions"])
+elif option == 'Cloud Kitchen':
+    st.write('### Cloud Kitchen Services')
+    st.write('Explore cloud kitchen services and partnerships. For more details, contact us directly.')
 
-# Display video tutorial link
-st.write("### Video Tutorial:")
-st.write(f"[Watch how to make {recipe_choice}]({selected_recipe['video_link']})")
+elif option == 'Part-Time Opportunities':
+    st.write('### Part-Time Opportunities')
+    st.write('If you love cooking or are interested in hotel management, check out these opportunities:')
+    st.write('- Cook at local restaurants')
+    st.write('- Work as a kitchen assistant')
+    st.write('- Explore hotel management internships')
+    st.write('Visit our careers page for more details.')
 
-# Links to grocery store, cloud kitchen, and cooking classes
-st.write("### Grocery Store")
-st.write(f"[Shop here]({grocery_store_link}) for ingredients.")
-
-st.write("### Cloud Kitchen")
-st.write(f"[Order from our cloud kitchen]({cloud_kitchen_link}) for meal prep.")
-
-st.write("### Cooking Classes")
-st.write(f"[Join cooking classes]({cooking_classes_link}) to learn more cooking skills.")
-
+# Run the app with `streamlit run app.py`
