@@ -1,11 +1,17 @@
 import streamlit as st
 import pandas as pd
 
-# Sample data for grocery stores, part-time jobs, and recipes
+# Sample data for grocery stores, cloud kitchens, part-time jobs, and recipes
 grocery_stores = {
     "Store Name": ["Healthy Foods", "Grocery Mart", "Fitness Market"],
     "Location": ["Downtown", "Uptown", "Suburb"],
     "Contact": ["123-456-7890", "234-567-8901", "345-678-9012"]
+}
+
+cloud_kitchens = {
+    "Kitchen Name": ["Chef's Kitchen", "Home Cooked Meals", "Fitness Food Hub"],
+    "Location": ["Downtown", "Uptown", "Suburb"],
+    "Contact": ["chef@kitchen.com", "homecook@meals.com", "info@fitnessfoodhub.com"]
 }
 
 job_listings = {
@@ -15,22 +21,24 @@ job_listings = {
 }
 
 recipes = {
-    "Recipe Name": ["Protein Pancakes", "Chicken Salad", "Quinoa Bowl"],
+    "Recipe Name": ["Spaghetti Bolognese", "Chicken Curry", "Quinoa Salad", "Protein Smoothie"],
     "Ingredients": [
-        "2 Eggs, 1/2 cup Oats, 1/2 Banana, Protein Powder",
-        "200g Chicken Breast, Lettuce, Cherry Tomatoes, Olive Oil",
-        "1 cup Quinoa, 1 cup Broccoli, 1/2 Avocado, Lemon Juice"
+        "200g Spaghetti, 100g Ground Beef, Tomato Sauce, Onion, Garlic",
+        "200g Chicken Breast, Curry Powder, Coconut Milk, Vegetables",
+        "1 cup Quinoa, 1/2 cup Cherry Tomatoes, Cucumber, Lemon Dressing",
+        "1 Banana, 1 scoop Protein Powder, 1 cup Almond Milk, Spinach"
     ],
-    "Calories": [250, 300, 400],
+    "Calories": [400, 600, 350, 250],
     "Description": [
-        "High-protein pancakes, great for breakfast.",
-        "A healthy salad packed with protein.",
-        "A nutritious bowl perfect for lunch."
+        "Classic Italian pasta dish with rich meat sauce.",
+        "Spicy and flavorful chicken curry with vegetables.",
+        "Healthy salad packed with protein and nutrients.",
+        "Nutritious smoothie perfect for post-workout."
     ]
 }
 
 # Streamlit App
-st.title("Gym Recipe & Food Platform")
+st.title("Food Recipe & Community Platform")
 
 # Recipe Search
 st.header("Find Recipes")
@@ -51,6 +59,11 @@ st.header("Grocery Stores")
 store_df = pd.DataFrame(grocery_stores)
 st.write(store_df)
 
+# Cloud Kitchen Section
+st.header("Cloud Kitchens")
+kitchen_df = pd.DataFrame(cloud_kitchens)
+st.write(kitchen_df)
+
 # Job Listings Section
 st.header("Part-time Cooking Jobs")
 job_df = pd.DataFrame(job_listings)
@@ -58,4 +71,5 @@ st.write(job_df)
 
 # Run the Streamlit app
 if __name__ == "__main__":
+    st.run()
 
