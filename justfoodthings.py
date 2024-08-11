@@ -1,7 +1,6 @@
 import streamlit as st
 import pandas as pd
 
-# Sample data for demonstration
 recipes_data = {
     'Recipe': ['Protein Smoothie', 'Quinoa Salad', 'Chicken Stir-Fry'],
     'Ingredients': [
@@ -23,14 +22,11 @@ grocery_data = {
     'Price': [25.0, 1.0, 7.0, 3.0, 2.5, 10.0, 3.5]
 }
 
-# Convert to DataFrame
 recipes_df = pd.DataFrame(recipes_data)
 grocery_df = pd.DataFrame(grocery_data)
 
-# Streamlit app
 st.title('Healthy Living Platform')
 
-# Sidebar for navigation
 st.sidebar.title('Navigation')
 option = st.sidebar.selectbox('Select a section:', ['Home', 'Recipes', 'Grocery Store', 'Cloud Kitchen', 'Part-Time Opportunities'])
 
