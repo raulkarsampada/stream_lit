@@ -62,4 +62,14 @@ st.write(store_df)
 
 # Cloud Kitchen Section
 st.header("Cloud Kitchens")
-kitchen_df = pd.
+kitchen_df = pd.DataFrame(cloud_kitchens)
+st.write(kitchen_df)
+
+# Job Listings Section
+st.header("Part-time Cooking Jobs")
+job_df = pd.DataFrame(job_listings)
+st.write(job_df)
+
+# Run the Streamlit app
+if __name__ == "__main__":
+    st.run()
