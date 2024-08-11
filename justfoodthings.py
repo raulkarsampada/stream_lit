@@ -53,7 +53,3 @@ elif options == "Part-time Cooking Jobs":
     st.subheader("Part-time Cooking Jobs")
     st.write("We are looking for passionate part-time cooks and hotel management enthusiasts.")
     st.write("If you're interested, please send your resume to jobs@example.com")
-
-# Run the Streamlit app
-if __name__ == "__main__":
-    st.write("Run the app with 'streamlit run app.py'")
