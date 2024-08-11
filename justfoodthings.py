@@ -58,4 +58,3 @@ elif option == 'Part-Time Opportunities':
     st.write('Visit our careers page for more details.')
 
 # Run the app with `streamlit run app.py`
-
