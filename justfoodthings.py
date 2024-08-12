@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="Foodie Hub", page_icon="🍲")
+st.set_page_config(page_title="Food lab", page_icon="🍲")
 
 def home():
-    st.title("Welcome to Foodie Hub!")
+    st.title("Welcome to FoodLab!")
     st.image("https://www.istockphoto.com/photo/brunch-table-gm1795744550-548117183", use_column_width=True)
     st.markdown("""
     **Foodie Hub** is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
