@@ -6,7 +6,7 @@ def home():
     st.title("Welcome to Taste Market!")
     st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_column_width=True)
     st.markdown("""
-    *Foodie Hub* is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
+    *Taste Market* is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
     Use the navigation on the left to explore more!
     """)
 
