@@ -4,8 +4,6 @@ st.set_page_config(page_title="Food lab", page_icon="🍲")
 
 def home():
     st.title("Welcome to FoodLab!")
-    st.image("https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.freethephd.com%2F2017%2F03%2F27%2Feating-scientific-impact-the-food-lab%2F&psig=AOvVaw0F9uZG1lkaJONSlV4ksqSl&ust=1723528372447000&source=images&cd=vfe&opi=89978449&ved=0CA8QjRxqFwoTCMjK6tjh7ocDFQAAAAAdAAAAABAE", use_column_width=True)
-    st.markdown("""
     **Foodie Hub** is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
     Use the navigation on the left to explore more!
     """)
