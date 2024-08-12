@@ -1,9 +1,9 @@
 import streamlit as st
 
-st.set_page_config(page_title="Foodie Hub", page_icon="🍲")
+st.set_page_config(page_title="Taste Market", page_icon="🍲")
 
 def home():
-    st.title("Welcome to Foodie Hub!")
+    st.title("Welcome to Taste Market!")
     st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_column_width=True)
     st.markdown("""
     *Foodie Hub* is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
@@ -71,4 +71,4 @@ elif choice == "Part-Time Work Opportunities":
     part_time_workers()
 
 st.sidebar.markdown("---")
-st.sidebar.markdown("© 2024 Foodie Hub")
+st.sidebar.markdown("© 2024 Taste Market")
