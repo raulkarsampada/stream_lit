@@ -4,7 +4,7 @@ st.set_page_config(page_title="Taste Market", page_icon="🍲")
 
 def home():
     st.title("Welcome to Taste Market!")
-    st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_column_width=True)
+    st.image("https://images.unsplash.com/photo-1556912167-f556f1fda05a", use_container_width=True)
     st.markdown("""
     *Taste Market* is your one-stop solution for delicious recipes, grocery stores, cloud kitchens, and a platform for aspiring chefs and hotel management enthusiasts. 
     Use the navigation on the left to explore more!
@@ -13,7 +13,7 @@ def home():
 def recipes():
     st.title("Recipe of the Day")
     st.header("Spaghetti Carbonara")
-    st.image("https://images.unsplash.com/photo-1525351484163-7529414344d8", use_column_width=True)
+    st.image("https://images.unsplash.com/photo-1525351484163-7529414344d8", use_container_width=True)
     st.markdown("""
     *Ingredients:*
     - 200g Spaghetti
