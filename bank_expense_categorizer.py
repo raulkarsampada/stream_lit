@@ -32,17 +32,4 @@ st.title("💰 Bank Expense Manager")
 st.caption("Built with ❤️ by Your Name")  # Replace with your name
 
 # --- NAVIGATION ---
-tab1, tab2, tab3 = st.tabs(["🏠 Main Budget", "🔐 Emergency Access", "ℹ️ Info"])
-
-# --- MAIN BUDGET TAB ---
-with tab1:
-    st.header("💸 Monthly Budget Setup")
-    
-    st.markdown("""
-        <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8px;'>
-            <h3 style="color:#388e3c">Set up your monthly budget by allocating funds across categories</h3>
-        </div>
-    """, unsafe_allow_html=True)
-
-    # Income input
-    income = st.number_input("Enter_
+tab1, tab2, tab3 = st.tabs
