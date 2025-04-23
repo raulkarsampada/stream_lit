@@ -100,4 +100,41 @@ if tabs_2 == "Report":
     patient_name = name if name else "N/A"
     patient_age = age if age else "N/A"
     patient_gender = gender if gender else "N/A"
-    patient_id_value = patient_id if patient_id else "
+    patient_id_value = patient_id if patient_id else "N/A"
+
+    # Expiratory Test data
+    fev1_value = fev1 if fev1 else "N/A"
+    fvc_exp_value = fvc_exp if fvc_exp else "N/A"
+    pef_value = pef if pef else "N/A"
+    mep_value = mep if mep else "N/A"
+
+    # Inspiratory Test data
+    fivc_value = fivc if fivc else "N/A"
+    mip_value = mip if mip else "N/A"
+    pif_value = pif if pif else "N/A"
+
+    # FVC Test data
+    svc_value = svc if svc else "N/A"
+    mvv_value = mvv if mvv else "N/A"
+
+    # Display Summary Report
+    st.markdown(f"#### 👤 Patient Info")
+    st.markdown(f"- Name: **{patient_name}**")
+    st.markdown(f"- Age: **{patient_age}**")
+    st.markdown(f"- Gender: **{patient_gender}**")
+    st.markdown(f"- ID: **{patient_id_value}**")
+
+    st.markdown(f"#### 🌬️ Expiratory Test")
+    st.markdown(f"- FEV1: **{fev1_value}** L")
+    st.markdown(f"- FVC: **{fvc_exp_value}** L")
+    st.markdown(f"- PEF: **{pef_value}** L/min")
+    st.markdown(f"- MEP: **{mep_value}** cmH₂O")
+
+    st.markdown(f"#### 🌬️ Inspiratory Test")
+    st.markdown(f"- FIVC: **{fivc_value}** L")
+    st.markdown(f"- MIP: **{mip_value}** cmH₂O")
+    st.markdown(f"- PIF: **{pif_value}** L/min")
+
+    st.markdown(f"#### 📊 FVC Test")
+    st.markdown(f"- SVC: **{svc_value}** L")
+    st.markdown(f"- MVV: **{mvv_value}** L/min")
