@@ -29,7 +29,10 @@ st.markdown("""
 
 # Title of the app
 st.title("💰 Bank Expense Manager")
-st.caption("Built with ❤️ by Your Name")  # Replace with your name
+st.caption("Built with ❤️ by Sampada Raulkar")  # Your name added here
 
 # --- NAVIGATION ---
-tab1, tab2, tab3 = st.tabs
+tab1, tab2, tab3 = st.tabs(["🏠 Main Budget", "🔐 Emergency Access", "ℹ️ Info"])
+
+# --- MAIN BUDGET TAB ---
+with tab1:
