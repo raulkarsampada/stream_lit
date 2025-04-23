@@ -36,3 +36,7 @@ tab1, tab2, tab3 = st.tabs(["🏠 Main Budget", "🔐 Emergency Access", "ℹ️
 
 # --- MAIN BUDGET TAB ---
 with tab1:
+    st.header("💸 Monthly Budget Setup")
+    
+    st.markdown("""
+        <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8
