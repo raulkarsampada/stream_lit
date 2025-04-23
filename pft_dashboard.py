@@ -36,4 +36,15 @@ with st.expander("🌬️ Expiratory Test"):
 # 4. Inspiratory Test Section
 with st.expander("🌬️ Inspiratory Test"):
     mvv = st.number_input("🫁 Maximum Voluntary Ventilation (MVV) - L/min", min_value=0.0, step=0.1)
-    tidal_volume = st.number_input("💨 Tidal Volume - L", min_value=0.0, step=0.1_
+    tidal_volume = st.number_input("💨 Tidal Volume - L", min_value=0.0, step=0.1)
+
+    if st.button("📤 Submit Inspiratory Test"):
+        st.success(f"✅ Submitted: MVV = {mvv} L/min, Tidal Volume = {tidal_volume} L")
+
+# 5. FVC Test Section
+with st.expander("📊 FVC Test"):
+    fvc = st.number_input("📊 Forced Vital Capacity (FVC) - L", min_value=0.0, step=0.1)
+    fev1_fvc_ratio = st.number_input("🔢 FEV1/FVC Ratio (%)", min_value=0.0, max_value=100.0, step=0.1)
+
+    if st.button("📤 Submit FVC Test"):
+        st.success(f"✅ Submitted: FVC = {fvc} L, FEV1/FVC Ratio = {fev1_fvc_ratio}%")
