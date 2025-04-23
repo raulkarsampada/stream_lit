@@ -49,4 +49,6 @@ with tab3:
     st.markdown("""
     This app helps you manually divide your monthly income into key expense categories.  
     Use the Emergency tab only when truly needed — and protect your password! 🔐  
-    Customize
+    Customize it anytime to track your own personal budgeting goals.
+    """)  # ✅ Fixed here by closing the triple quotes properly
+
