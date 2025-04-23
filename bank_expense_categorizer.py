@@ -43,4 +43,9 @@ with tabs[0]:
 
     st.markdown("""
         <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8px;'>
-            <h3 style="color
+            <h3 style="color:#388e3c">Allocate your monthly budget</h3>
+        </div>
+    """, unsafe_allow_html=True)
+
+    # Income input
+    income = st.number_input("Enter your monthly income (₹)", min_
