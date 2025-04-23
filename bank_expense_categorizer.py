@@ -1,52 +1,59 @@
 import streamlit as st
-import pandas as pd
 
-st.set_page_config(page_title="Bank Expense Categorizer", layout="wide")
+# Set the page title
+st.set_page_config(page_title="Bank Account Expense Manager", layout="centered")
 
-st.title("🏦 Bank Account Expense Manager")
-st.markdown("Upload your bank CSV and categorize your expenses by navigation channels.")
+# Title of the app
+st.title("💰 Bank Account Expense Manager")
 
-# Upload CSV
-uploaded_file = st.file_uploader("Upload your Bank Statement (CSV)", type=["csv"])
+# Input for monthly income
+income = st.number_input("Enter your monthly income (₹)", min_value=0, value=30000, step=1000)
 
-if uploaded_file:
-    df = pd.read_csv(uploaded_file)
+st.markdown("---")
 
-    # Basic check for necessary columns
-    if not set(["Date", "Description", "Amount"]).issubset(df.columns):
-        st.error("CSV must contain 'Date', 'Description', and 'Amount' columns.")
-    else:
-        df['Category'] = ""
+# Default allocations (you can customize this)
+st.subheader("📊 Allocate your income into categories:")
+default_allocations = {
+    "Groceries": 5000,
+    "Clothes": 5000,
+    "Savings": 10000,
+    "Send Home": 10000
+}
 
-        st.subheader("🔍 Review & Categorize Transactions")
+# Editable sliders for each category
+allocations = {}
+total_allocated = 0
 
-        # Manual category assignment
-        for idx, row in df.iterrows():
-            with st.expander(f"{row['Date']} | {row['Description']} | ${row['Amount']}"):
-                category = st.selectbox(
-                    f"Select category for transaction {idx + 1}",
-                    options=["", "Food", "Transport", "Rent", "Shopping", "Utilities", "Entertainment", "Other"],
-                    key=idx
-                )
-                df.at[idx, 'Category'] = category
+for category, default_value in default_allocations.items():
+    allocations[category] = st.slider(
+        f"{category} (₹)", 
+        0, 
+        income, 
+        default_value, 
+        step=500
+    )
+    total_allocated += allocations[category]
 
-        # Show categorized summary
-        if st.button("✅ Show Summary by Category"):
-            if df['Category'].eq("").any():
-                st.warning("Some transactions are uncategorized.")
-            else:
-                st.success("Categorized Summary")
-                for cat in df['Category'].unique():
-                    cat_df = df[df['Category'] == cat]
-                    with st.expander(f"📂 {cat} - Total: ${cat_df['Amount'].sum():.2f}"):
-                        st.dataframe(cat_df)
+# Remaining balance
+remaining = income - total_allocated
 
-        # Option to download categorized data
-        st.download_button(
-            "📥 Download Categorized Data",
-            data=df.to_csv(index=False),
-            file_name="categorized_expenses.csv",
-            mime="text/csv"
-        )
+st.markdown("---")
+
+# Display results
+if remaining < 0:
+    st.error(f"🚫 Over-allocated by ₹{abs(remaining)}. Adjust your categories.")
 else:
-    st.info("Please upload a CSV to begin.")
+    st.success(f"✅ Remaining Balance: ₹{remaining}")
+
+    st.subheader("💼 Summary:")
+    for category, amount in allocations.items():
+        st.write(f"- **{category}**: ₹{amount}")
+
+# Optional: Pie chart
+if st.checkbox("Show Pie Chart"):
+    import matplotlib.pyplot as plt
+
+    fig, ax = plt.subplots()
+    ax.pie(allocations.values(), labels=allocations.keys(), autopct='%1.1f%%', startangle=90)
+    ax.axis('equal')
+    st.pyplot(fig)
