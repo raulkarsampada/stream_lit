@@ -34,4 +34,27 @@ st.markdown(
 )
 
 st.image("https://cdn-icons-png.flaticon.com/512/3004/3004593.png", width=80)
-st.title("
+st.title("🫁 Pulmonary Function Test")  # Corrected the string here
+st.markdown("Use the tabs below to enter and view data for different lung function tests.")
+
+# Tabs Navigation
+tabs = st.tabs(["🧍 Patient Info", "🌬️ Expiratory Test", "🌬️ Inspiratory Test", "📊 FVC Test", "📄 Report"])
+
+# 1. Patient Info Tab
+with tabs[0]:
+    with st.form("patient_form"):
+        st.image("https://cdn-icons-png.flaticon.com/512/747/747376.png", width=60)
+        name = st.text_input("👤 Full Name")
+        age = st.number_input("🎂 Age", min_value=0, max_value=120, step=1)
+        gender = st.selectbox("⚧️ Gender", ["Male", "Female", "Other"])
+        patient_id = st.text_input("🆔 Patient ID")
+        submit = st.form_submit_button("💾 Save Info")
+
+        if submit:
+            st.success(f"Saved: {name}, {age} yrs, {gender}, ID: {patient_id}")
+
+# 2. Expiratory Test Tab
+with tabs[1]:
+    st.image("https://cdn-icons-png.flaticon.com/512/553/553416.png", width=60)
+    fev1 = st.number_input("📉 FEV1 (L)", min_value=0.0, step=0.1)
+    fvc_exp = st.number_input("📊 FVC (L)", min_value=0.0_
