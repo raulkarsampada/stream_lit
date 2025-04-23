@@ -1,59 +1,48 @@
 import streamlit as st
+import random
+import matplotlib.pyplot as plt
 
-# Set the page title
-st.set_page_config(page_title="Bank Account Expense Manager", layout="centered")
+st.set_page_config(page_title="Random Bank Expense Split", layout="centered")
 
-# Title of the app
-st.title("💰 Bank Account Expense Manager")
+st.title("🎲 Random Expense Divider")
 
-# Input for monthly income
+# Get user income
 income = st.number_input("Enter your monthly income (₹)", min_value=0, value=30000, step=1000)
 
-st.markdown("---")
+st.markdown("----")
 
-# Default allocations (you can customize this)
-st.subheader("📊 Allocate your income into categories:")
-default_allocations = {
-    "Groceries": 5000,
-    "Clothes": 5000,
-    "Savings": 10000,
-    "Send Home": 10000
-}
+# Expense categories
+categories = ["Groceries", "Clothes", "Savings", "Send Home", "Entertainment", "Bills"]
 
-# Editable sliders for each category
-allocations = {}
+# Generate random allocation percentages that sum to 100
+def generate_random_allocation(categories):
+    weights = [random.randint(1, 100) for _ in categories]
+    total_weight = sum(weights)
+    return {cat: round((w / total_weight) * income) for cat, w in zip(categories, weights)}
+
+# Create allocation
+allocations = generate_random_allocation(categories)
+
+st.subheader("📊 Randomly Allocated Expenses:")
+
 total_allocated = 0
+for category, amount in allocations.items():
+    st.write(f"- **{category}**: ₹{amount}")
+    total_allocated += amount
 
-for category, default_value in default_allocations.items():
-    allocations[category] = st.slider(
-        f"{category} (₹)", 
-        0, 
-        income, 
-        default_value, 
-        step=500
-    )
-    total_allocated += allocations[category]
-
-# Remaining balance
 remaining = income - total_allocated
+st.markdown("----")
 
-st.markdown("---")
+# Show remaining balance
+st.info(f"Remaining Balance: ₹{remaining}")
 
-# Display results
-if remaining < 0:
-    st.error(f"🚫 Over-allocated by ₹{abs(remaining)}. Adjust your categories.")
-else:
-    st.success(f"✅ Remaining Balance: ₹{remaining}")
+# Pie chart
+st.subheader("📈 Expense Distribution Chart")
+fig, ax = plt.subplots()
+ax.pie(allocations.values(), labels=allocations.keys(), autopct='%1.1f%%', startangle=90)
+ax.axis('equal')
+st.pyplot(fig)
 
-    st.subheader("💼 Summary:")
-    for category, amount in allocations.items():
-        st.write(f"- **{category}**: ₹{amount}")
-
-# Optional: Pie chart
-if st.checkbox("Show Pie Chart"):
-    import matplotlib.pyplot as plt
-
-    fig, ax = plt.subplots()
-    ax.pie(allocations.values(), labels=allocations.keys(), autopct='%1.1f%%', startangle=90)
-    ax.axis('equal')
-    st.pyplot(fig)
+# Option to re-randomize
+if st.button("🔁 Re-Randomize Allocation"):
+    st.experimental_rerun()
