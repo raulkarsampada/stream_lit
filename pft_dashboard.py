@@ -57,4 +57,33 @@ with tabs[0]:
 with tabs[1]:
     st.image("https://cdn-icons-png.flaticon.com/512/553/553416.png", width=60)
     fev1 = st.number_input("📉 FEV1 (L)", min_value=0.0, step=0.1)
-    fvc_exp = st.number_input("📊 FVC (L)", min_value=0.0_
+    fvc_exp = st.number_input("📊 FVC (L)", min_value=0.0, step=0.1)  # Corrected this line
+    pef = st.number_input("📈 PEF (L/min)", min_value=0.0, step=0.1)
+    mep = st.number_input("💪 MEP (cmH₂O)", min_value=0.0, step=0.1)
+
+    if st.button("Submit Expiratory Test"):
+        st.success("✅ Expiratory Test Saved")
+
+# 3. Inspiratory Test Tab
+with tabs[2]:
+    st.image("https://cdn-icons-png.flaticon.com/512/3004/3004593.png", width=60)
+    fivc = st.number_input("🌬️ FIVC (L)", min_value=0.0, step=0.1)
+    mip = st.number_input("💪 MIP (cmH₂O)", min_value=0.0, step=0.1)
+    pif = st.number_input("💨 PIF (L/min)", min_value=0.0, step=0.1)
+
+    if st.button("Submit Inspiratory Test"):
+        st.success("✅ Inspiratory Test Saved")
+
+# 4. FVC Test Tab
+with tabs[3]:
+    st.image("https://cdn-icons-png.flaticon.com/512/1321/1321360.png", width=60)
+    svc = st.number_input("📊 SVC (L)", min_value=0.0, step=0.1)
+    mvv = st.number_input("🫁 MVV (L/min)", min_value=0.0, step=0.1)
+
+    if st.button("Submit FVC Test"):
+        st.success("✅ FVC Test Saved")
+
+# 5. Report Tab
+with tabs[4]:
+    st.image("https://cdn-icons-png.flaticon.com/512/3039/3039437.png", width=60)
+    st.subheader("🧾 Summary Report")
