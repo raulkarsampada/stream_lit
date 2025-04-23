@@ -45,35 +45,4 @@ with tab1:
     """, unsafe_allow_html=True)
 
     # Income input
-    income = st.number_input("Enter your monthly income (₹)", min_value=0, value=30000, step=1000)
-
-    st.subheader("📊 Allocate your budget manually")
-    
-    # Manual inputs for each category
-    groceries = st.number_input("Groceries (₹)", min_value=0, value=5000, step=500)
-    clothes = st.number_input("Clothes (₹)", min_value=0, value=5000, step=500)
-    savings = st.number_input("Savings (₹)", min_value=0, value=10000, step=500)
-    send_home = st.number_input("Send Home (₹)", min_value=0, value=10000, step=500)
-
-    total = groceries + clothes + savings + send_home
-    remaining = income - total
-
-    # Showing budget summary
-    st.markdown("---")
-    st.success(f"Total Allocated: ₹{total}")
-    st.info(f"Remaining Balance: ₹{remaining}")
-
-    # Option to view details or reset budget
-    with st.expander("📅 View All Details"):
-        st.write(f"**Income**: ₹{income}")
-        st.write(f"**Groceries**: ₹{groceries}")
-        st.write(f"**Clothes**: ₹{clothes}")
-        st.write(f"**Savings**: ₹{savings}")
-        st.write(f"**Send Home**: ₹{send_home}")
-
-# --- EMERGENCY ACCESS TAB ---
-with tab2:
-    st.header("🚨 Emergency Funds Access")
-    st.markdown("""
-        <div style='background-color: #ffebee; padding: 10px; border-radius: 8px;'>
-            <h3 style="color:#d
+    income = st.number_input("Enter_
