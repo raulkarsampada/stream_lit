@@ -32,4 +32,15 @@ st.title("💰 Bank Expense Manager")
 st.caption("Built with ❤️ by Sampada Raulkar")  # Your name added here
 
 # --- NAVIGATION ---
-tab1, tab2
+tabs = st.tabs(["🏠 Budget Setup", "🔐 Emergency Access", "ℹ️ Info"])
+
+# --- BUDGET SETUP TAB ---
+with tabs[0]:
+    st.header("💸 Monthly Budget Setup")
+    
+    # Add an image to make it visually appealing
+    st.image("https://www.example.com/budget-image.jpg", caption="Manage your expenses effectively!", width=500)  # Replace with your own image URL
+
+    st.markdown("""
+        <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8px;'>
+            <h3 style="color
