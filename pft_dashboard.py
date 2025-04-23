@@ -1,140 +1,87 @@
 import streamlit as st
 
+# Set up page
 st.set_page_config(page_title="Pulmonary Function Test", layout="centered")
 
-# Custom CSS to style the tabs to be larger and square-shaped
-st.markdown(
-    """
-    <style>
-    .stTabs [role="tablist"] {
-        background-color: #f0f2f6;
-        border-radius: 0px;
-        padding: 0.5rem;
-        gap: 10px;
-    }
-    .stTabs [role="tab"] {
-        padding: 1rem 2rem;
-        border: 2px solid #d0d0d0;
-        border-radius: 8px;
-        font-weight: 600;
-        font-size: 16px;
-        background-color: #ffffff;
-        transition: background-color 0.3s ease;
-    }
-    .stTabs [role="tab"]:hover {
-        background-color: #d0d0d0;
-    }
-    .stTabs [role="tab"][aria-selected="true"] {
-        background-color: #4caf50;
-        color: white;
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
+# Initialize session state for navigation if not already set
+if "page" not in st.session_state:
+    st.session_state.page = "Patient Info"
 
-# Corrected the st.image() line
-st.image("https://cdn-icons-png.flaticon.com/512/3004/3004593.png", width=80)
-st.title("🫁 Pulmonary Function Test")  # Corrected the string here
-st.markdown("Use the tabs below to enter and view data for different lung function tests.")
+# Function to navigate to a new page
+def go_to(page_name):
+    st.session_state.page = page_name
 
-# Create two columns to arrange the tabs in a row format
-col1, col2 = st.columns(2)
+# Sidebar buttons to navigate
+st.sidebar.title("Navigation")
+st.sidebar.button("Patient Info", on_click=go_to, args=("Patient Info",))
+st.sidebar.button("Expiratory Test", on_click=go_to, args=("Expiratory Test",))
+st.sidebar.button("Inspiratory Test", on_click=go_to, args=("Inspiratory Test",))
+st.sidebar.button("FVC Test", on_click=go_to, args=("FVC Test",))
+st.sidebar.button("Report", on_click=go_to, args=("Report",))
 
-# Tabs Navigation in Column Layout
-with col1:
-    tabs_1 = st.radio("🧍 Patient Info", ["Patient Info"])
+# Page content based on navigation state
+page = st.session_state.page
 
-with col2:
-    tabs_2 = st.radio("🌬️ Test Tabs", ["Expiratory Test", "Inspiratory Test", "FVC Test", "Report"])
+# 1. Patient Info
+if page == "Patient Info":
+    st.image("https://cdn-icons-png.flaticon.com/512/747/747376.png", width=60)
+    st.title("🧑‍⚕️ Patient Information")
+    with st.form("patient_info_form"):
+        st.session_state.name = st.text_input("Name", st.session_state.get("name", ""))
+        st.session_state.age = st.number_input("Age", value=st.session_state.get("age", 0), min_value=0, max_value=120)
+        st.session_state.gender = st.selectbox("Gender", ["Male", "Female", "Other"], index=0)
+        st.session_state.patient_id = st.text_input("Patient ID", st.session_state.get("patient_id", ""))
+        submitted = st.form_submit_button("Save & Continue ➡️")
+        if submitted:
+            go_to("Expiratory Test")
 
-# 1. Patient Info Tab
-if tabs_1 == "Patient Info":
-    with st.form("patient_form"):
-        st.image("https://cdn-icons-png.flaticon.com/512/747/747376.png", width=60)
-        name = st.text_input("👤 Full Name")
-        age = st.number_input("🎂 Age", min_value=0, max_value=120, step=1)
-        gender = st.selectbox("⚧️ Gender", ["Male", "Female", "Other"])
-        patient_id = st.text_input("🆔 Patient ID")
-        submit = st.form_submit_button("💾 Save Info")
+# 2. Expiratory Test
+elif page == "Expiratory Test":
+    st.title("💨 Expiratory Test")
+    st.session_state.fev1 = st.number_input("FEV1 (L)", value=st.session_state.get("fev1", 0.0), step=0.1)
+    st.session_state.fvc_exp = st.number_input("FVC (L)", value=st.session_state.get("fvc_exp", 0.0), step=0.1)
+    st.session_state.pef = st.number_input("PEF (L/min)", value=st.session_state.get("pef", 0.0), step=0.1)
+    st.session_state.mep = st.number_input("MEP (cmH₂O)", value=st.session_state.get("mep", 0.0), step=0.1)
+    if st.button("Next ➡️"):
+        go_to("Inspiratory Test")
 
-        if submit:
-            st.success(f"Saved: {name}, {age} yrs, {gender}, ID: {patient_id}")
+# 3. Inspiratory Test
+elif page == "Inspiratory Test":
+    st.title("🫁 Inspiratory Test")
+    st.session_state.fivc = st.number_input("FIVC (L)", value=st.session_state.get("fivc", 0.0), step=0.1)
+    st.session_state.mip = st.number_input("MIP (cmH₂O)", value=st.session_state.get("mip", 0.0), step=0.1)
+    st.session_state.pif = st.number_input("PIF (L/min)", value=st.session_state.get("pif", 0.0), step=0.1)
+    if st.button("Next ➡️"):
+        go_to("FVC Test")
 
-# 2. Expiratory Test Tab
-if tabs_2 == "Expiratory Test":
-    st.image("https://cdn-icons-png.flaticon.com/512/553/553416.png", width=60)
-    fev1 = st.number_input("📉 FEV1 (L)", min_value=0.0, step=0.1)
-    fvc_exp = st.number_input("📊 FVC (L)", min_value=0.0, step=0.1)
-    pef = st.number_input("📈 PEF (L/min)", min_value=0.0, step=0.1)
-    mep = st.number_input("💪 MEP (cmH₂O)", min_value=0.0, step=0.1)
+# 4. FVC Test
+elif page == "FVC Test":
+    st.title("📊 FVC Test")
+    st.session_state.svc = st.number_input("SVC (L)", value=st.session_state.get("svc", 0.0), step=0.1)
+    st.session_state.mvv = st.number_input("MVV (L/min)", value=st.session_state.get("mvv", 0.0), step=0.1)
+    if st.button("Next ➡️"):
+        go_to("Report")
 
-    if st.button("Submit Expiratory Test"):
-        st.success("✅ Expiratory Test Saved")
+# 5. Report
+elif page == "Report":
+    st.title("🧾 Final Report")
+    st.markdown(f"**Name:** {st.session_state.get('name', 'N/A')}")
+    st.markdown(f"**Age:** {st.session_state.get('age', 'N/A')}")
+    st.markdown(f"**Gender:** {st.session_state.get('gender', 'N/A')}")
+    st.markdown(f"**Patient ID:** {st.session_state.get('patient_id', 'N/A')}")
+    st.markdown("---")
+    st.markdown("### Expiratory Test")
+    st.markdown(f"- FEV1: {st.session_state.get('fev1', 'N/A')} L")
+    st.markdown(f"- FVC: {st.session_state.get('fvc_exp', 'N/A')} L")
+    st.markdown(f"- PEF: {st.session_state.get('pef', 'N/A')} L/min")
+    st.markdown(f"- MEP: {st.session_state.get('mep', 'N/A')} cmH₂O")
+    st.markdown("### Inspiratory Test")
+    st.markdown(f"- FIVC: {st.session_state.get('fivc', 'N/A')} L")
+    st.markdown(f"- MIP: {st.session_state.get('mip', 'N/A')} cmH₂O")
+    st.markdown(f"- PIF: {st.session_state.get('pif', 'N/A')} L/min")
+    st.markdown("### FVC Test")
+    st.markdown(f"- SVC: {st.session_state.get('svc', 'N/A')} L")
+    st.markdown(f"- MVV: {st.session_state.get('mvv', 'N/A')} L/min")
 
-# 3. Inspiratory Test Tab
-if tabs_2 == "Inspiratory Test":
-    st.image("https://cdn-icons-png.flaticon.com/512/3004/3004593.png", width=60)
-    fivc = st.number_input("🌬️ FIVC (L)", min_value=0.0, step=0.1)
-    mip = st.number_input("💪 MIP (cmH₂O)", min_value=0.0, step=0.1)
-    pif = st.number_input("💨 PIF (L/min)", min_value=0.0, step=0.1)
-
-    if st.button("Submit Inspiratory Test"):
-        st.success("✅ Inspiratory Test Saved")
-
-# 4. FVC Test Tab
-if tabs_2 == "FVC Test":
-    st.image("https://cdn-icons-png.flaticon.com/512/1321/1321360.png", width=60)
-    svc = st.number_input("📊 SVC (L)", min_value=0.0, step=0.1)
-    mvv = st.number_input("🫁 MVV (L/min)", min_value=0.0, step=0.1)
-
-    if st.button("Submit FVC Test"):
-        st.success("✅ FVC Test Saved")
-
-# 5. Report Tab
-if tabs_2 == "Report":
-    st.image("https://cdn-icons-png.flaticon.com/512/3039/3039437.png", width=60)
-    st.subheader("🧾 Summary Report")
-
-    # Safely get the data for the report (fallback to 'N/A' if values are missing)
-    patient_name = name if name else "N/A"
-    patient_age = age if age else "N/A"
-    patient_gender = gender if gender else "N/A"
-    patient_id_value = patient_id if patient_id else "N/A"
-
-    # Expiratory Test data
-    fev1_value = fev1 if fev1 else "N/A"
-    fvc_exp_value = fvc_exp if fvc_exp else "N/A"
-    pef_value = pef if pef else "N/A"
-    mep_value = mep if mep else "N/A"
-
-    # Inspiratory Test data
-    fivc_value = fivc if fivc else "N/A"
-    mip_value = mip if mip else "N/A"
-    pif_value = pif if pif else "N/A"
-
-    # FVC Test data
-    svc_value = svc if svc else "N/A"
-    mvv_value = mvv if mvv else "N/A"
-
-    # Display Summary Report
-    st.markdown(f"#### 👤 Patient Info")
-    st.markdown(f"- Name: **{patient_name}**")
-    st.markdown(f"- Age: **{patient_age}**")
-    st.markdown(f"- Gender: **{patient_gender}**")
-    st.markdown(f"- ID: **{patient_id_value}**")
-
-    st.markdown(f"#### 🌬️ Expiratory Test")
-    st.markdown(f"- FEV1: **{fev1_value}** L")
-    st.markdown(f"- FVC: **{fvc_exp_value}** L")
-    st.markdown(f"- PEF: **{pef_value}** L/min")
-    st.markdown(f"- MEP: **{mep_value}** cmH₂O")
-
-    st.markdown(f"#### 🌬️ Inspiratory Test")
-    st.markdown(f"- FIVC: **{fivc_value}** L")
-    st.markdown(f"- MIP: **{mip_value}** cmH₂O")
-    st.markdown(f"- PIF: **{pif_value}** L/min")
-
-    st.markdown(f"#### 📊 FVC Test")
-    st.markdown(f"- SVC: **{svc_value}** L")
-    st.markdown(f"- MVV: **{mvv_value}** L/min")
+    if st.button("⬅️ Back to Start"):
+        go_to("Patient Info")
