@@ -2,17 +2,14 @@ import streamlit as st
 
 st.set_page_config(page_title="Pulmonary Function Test Dashboard", layout="centered")
 
-# Sidebar Navigation
-st.sidebar.title("🧪 Test Navigation")
-test_type = st.sidebar.radio(
-    "Select Test Type",
-    ("Patient Details", "Respiratory Test", "Expiratory Test", "Inspiratory Test", "FVC Test")
-)
+st.title("🧬 Pulmonary Function Test Dashboard")
 
-# Patient Info
-if test_type == "Patient Details":
-    st.title("🧍 Patient Information")
-    
+# Create Tabs
+tabs = st.tabs(["Patient Details", "Respiratory Test", "Expiratory Test", "Inspiratory Test", "FVC Test"])
+
+# Patient Details Tab
+with tabs[0]:
+    st.header("🧍 Patient Information")
     with st.form("patient_form"):
         name = st.text_input("Full Name")
         age = st.number_input("Age", min_value=0, max_value=120, step=1)
@@ -23,42 +20,42 @@ if test_type == "Patient Details":
         if submit:
             st.success(f"Patient Info Saved: {name}, {age} yrs, {gender}, ID: {patient_id}")
 
-# Respiratory Test
-elif test_type == "Respiratory Test":
-    st.title("🫁 Respiratory Test")
+# Respiratory Test Tab
+with tabs[1]:
+    st.header("🫁 Respiratory Test")
     st.write("Enter or upload respiratory test data below:")
     
-    test_result = st.text_area("Respiratory Test Observations")
-    uploaded_file = st.file_uploader("Upload Respiratory Test Report (Optional)", type=["csv", "pdf", "txt"])
+    resp_result = st.text_area("Respiratory Test Observations")
+    resp_file = st.file_uploader("Upload Respiratory Test Report (Optional)", type=["csv", "pdf", "txt"])
     
     if st.button("Submit Respiratory Test"):
         st.success("Respiratory Test data submitted.")
 
-# Expiratory Test
-elif test_type == "Expiratory Test":
-    st.title("🌬️ Expiratory Test")
+# Expiratory Test Tab
+with tabs[2]:
+    st.header("🌬️ Expiratory Test")
     st.write("Enter expiratory test values:")
 
     pef = st.number_input("Peak Expiratory Flow (PEF) - L/min", min_value=0.0, step=0.1)
     fev1 = st.number_input("Forced Expiratory Volume in 1 second (FEV1) - L", min_value=0.0, step=0.1)
     
     if st.button("Submit Expiratory Test"):
-        st.success(f"Data saved: PEF = {pef} L/min, FEV1 = {fev1} L")
+        st.success(f"Expiratory Test Submitted: PEF = {pef} L/min, FEV1 = {fev1} L")
 
-# Inspiratory Test
-elif test_type == "Inspiratory Test":
-    st.title("🌬️ Inspiratory Test")
+# Inspiratory Test Tab
+with tabs[3]:
+    st.header("🌬️ Inspiratory Test")
     st.write("Enter inspiratory test values:")
 
     mvv = st.number_input("Maximum Voluntary Ventilation (MVV) - L/min", min_value=0.0, step=0.1)
     tidal_volume = st.number_input("Tidal Volume - L", min_value=0.0, step=0.1)
 
     if st.button("Submit Inspiratory Test"):
-        st.success(f"Inspiratory test data submitted: MVV = {mvv} L/min, Tidal Volume = {tidal_volume} L")
+        st.success(f"Inspiratory Test Submitted: MVV = {mvv} L/min, Tidal Volume = {tidal_volume} L")
 
-# FVC Test
-elif test_type == "FVC Test":
-    st.title("📊 Forced Vital Capacity (FVC) Test")
+# FVC Test Tab
+with tabs[4]:
+    st.header("📊 Forced Vital Capacity (FVC) Test")
     st.write("Enter FVC test data:")
 
     fvc = st.number_input("Forced Vital Capacity (FVC) - L", min_value=0.0, step=0.1)
