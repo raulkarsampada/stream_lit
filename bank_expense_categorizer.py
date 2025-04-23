@@ -39,4 +39,5 @@ with tab1:
     st.header("💸 Monthly Budget Setup")
     
     st.markdown("""
-        <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8
+        <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8px;'>
+            <h3 style="color:#388e3c">Set up your
