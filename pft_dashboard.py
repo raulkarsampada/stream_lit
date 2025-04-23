@@ -17,34 +17,54 @@ with st.expander("🧍 Patient Information", expanded=True):
         if submit:
             st.success(f"✅ Patient Info Saved: {name}, {age} yrs, {gender}, ID: {patient_id}")
 
-# 2. Respiratory Test Section
-with st.expander("🫁 Respiratory Test"):
-    resp_result = st.text_area("📝 Observations")
-    resp_file = st.file_uploader("📎 Upload Respiratory Report (Optional)", type=["csv", "pdf", "txt"])
-    
-    if st.button("📤 Submit Respiratory Test"):
-        st.success("✅ Respiratory Test Data Submitted")
-
-# 3. Expiratory Test Section
+# 2. Expiratory Test Section
 with st.expander("🌬️ Expiratory Test"):
-    pef = st.number_input("📈 Peak Expiratory Flow (PEF) - L/min", min_value=0.0, step=0.1)
-    fev1 = st.number_input("📉 Forced Expiratory Volume in 1s (FEV1) - L", min_value=0.0, step=0.1)
+    fev1 = st.number_input("📉 FEV1 (Forced Expiratory Volume in 1s) - L", min_value=0.0, step=0.1)
+    fvc_exp = st.number_input("📊 FVC (Forced Vital Capacity) - L", min_value=0.0, step=0.1)
+    pef = st.number_input("📈 PEF (Peak Expiratory Flow) - L/min", min_value=0.0, step=0.1)
+    mep = st.number_input("💪 MEP (Max Expiratory Pressure) - cmH₂O", min_value=0.0, step=0.1)
 
     if st.button("📤 Submit Expiratory Test"):
-        st.success(f"✅ Submitted: PEF = {pef} L/min, FEV1 = {fev1} L")
+        st.success("✅ Expiratory Test Submitted")
 
-# 4. Inspiratory Test Section
+# 3. Inspiratory Test Section
 with st.expander("🌬️ Inspiratory Test"):
-    mvv = st.number_input("🫁 Maximum Voluntary Ventilation (MVV) - L/min", min_value=0.0, step=0.1)
-    tidal_volume = st.number_input("💨 Tidal Volume - L", min_value=0.0, step=0.1)
+    fivc = st.number_input("🌬️ FIVC (Forced Inspiratory Vital Capacity) - L", min_value=0.0, step=0.1)
+    mip = st.number_input("💪 MIP (Max Inspiratory Pressure) - cmH₂O", min_value=0.0, step=0.1)
+    pif = st.number_input("💨 PIF (Peak Inspiratory Flow) - L/min", min_value=0.0, step=0.1)
 
     if st.button("📤 Submit Inspiratory Test"):
-        st.success(f"✅ Submitted: MVV = {mvv} L/min, Tidal Volume = {tidal_volume} L")
+        st.success("✅ Inspiratory Test Submitted")
 
-# 5. FVC Test Section
+# 4. FVC Test Section
 with st.expander("📊 FVC Test"):
-    fvc = st.number_input("📊 Forced Vital Capacity (FVC) - L", min_value=0.0, step=0.1)
-    fev1_fvc_ratio = st.number_input("🔢 FEV1/FVC Ratio (%)", min_value=0.0, max_value=100.0, step=0.1)
+    svc = st.number_input("📊 SVC (Slow Vital Capacity) - L", min_value=0.0, step=0.1)
+    mvv = st.number_input("🫁 MVV (Max Voluntary Ventilation) - L/min", min_value=0.0, step=0.1)
 
     if st.button("📤 Submit FVC Test"):
-        st.success(f"✅ Submitted: FVC = {fvc} L, FEV1/FVC Ratio = {fev1_fvc_ratio}%")
+        st.success("✅ FVC Test Submitted")
+
+# 5. Final Report Section
+with st.expander("📄 Report Summary", expanded=False):
+    st.markdown("### 🧾 Summary Report")
+
+    st.markdown("#### 🔹 Patient Info")
+    st.markdown(f"**Name:** {name if name else 'N/A'}")
+    st.markdown(f"**Age:** {age if age else 'N/A'}")
+    st.markdown(f"**Gender:** {gender if gender else 'N/A'}")
+    st.markdown(f"**Patient ID:** {patient_id if patient_id else 'N/A'}")
+
+    st.markdown("#### 🔹 Expiratory Test")
+    st.markdown(f"- FEV1: {fev1} L")
+    st.markdown(f"- FVC: {fvc_exp} L")
+    st.markdown(f"- PEF: {pef} L/min")
+    st.markdown(f"- MEP: {mep} cmH₂O")
+
+    st.markdown("#### 🔹 Inspiratory Test")
+    st.markdown(f"- FIVC: {fivc} L")
+    st.markdown(f"- MIP: {mip} cmH₂O")
+    st.markdown(f"- PIF: {pif} L/min")
+
+    st.markdown("#### 🔹 FVC Test")
+    st.markdown(f"- SVC: {svc} L")
+    st.markdown(f"- MVV: {mvv} L/min")
