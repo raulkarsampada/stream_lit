@@ -32,12 +32,15 @@ st.title("💰 Bank Expense Manager")
 st.caption("Built with ❤️ by Sampada Raulkar")  # Your name added here
 
 # --- NAVIGATION ---
-tab1, tab2, tab3 = st.tabs(["🏠 Main Budget", "🔐 Emergency Access", "ℹ️ Info"])
+tab1, tab2, tab3 = st.tabs(["🏠 Budget Setup", "🔐 Emergency Access", "ℹ️ Info"])
 
-# --- MAIN BUDGET TAB ---
+# --- BUDGET SETUP TAB ---
 with tab1:
     st.header("💸 Monthly Budget Setup")
     
+    # Add an image to make it visually appealing
+    st.image("https://www.example.com/budget-image.jpg", caption="Manage your expenses effectively!", width=500)  # Replace with your own image URL
+
     st.markdown("""
         <div style='background-color: #e8f5e9; padding: 10px; border-radius: 8px;'>
             <h3 style="color:#388e3c">Allocate your monthly budget</h3>
@@ -88,12 +91,4 @@ with tab3:
         <div style='background-color: #e1f5fe; padding: 10px; border-radius: 8px;'>
             <h3 style="color:#0288d1">This app helps you divide your monthly income into key expense categories.</h3>
         </div>
-    """, unsafe_allow_html=True)
-
-    st.markdown("""
-    - **Main Budget**: Allocate funds to categories like Groceries, Clothes, Savings, Send Home, etc.
-    - **Emergency Access**: Protect your emergency funds with a password.
-    - **Reset anytime** to adjust your budget as needed.
-
-    Use the emergency password only in critical situations! 🔐
-    """)
+    """,
